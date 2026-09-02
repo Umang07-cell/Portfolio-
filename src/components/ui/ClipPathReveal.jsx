@@ -21,16 +21,24 @@ export default function ClipPathReveal({
   const hidden = closedClip[direction] || closedClip["left-to-right"];
 
   return (
-    <Component
-      className={`clippath-reveal ${className}`}
-      initial={reduceMotion ? false : { clipPath: hidden, opacity: 0.35 }}
-      whileInView={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", opacity: 1 }}
-      viewport={{ once: true, amount: 0.45 }}
-      transition={{ duration: reduceMotion ? 0 : duration, delay, ease: [0.16, 1, 0.3, 1] }}
-      {...props}
+    <motion.span
+      style={{ display: as === "span" ? "inline-block" : "block" }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "0px 0px -35% 0px" }}
     >
-      {children}
-    </Component>
+      <Component
+        className={`clippath-reveal ${className}`}
+        variants={{
+          hidden: reduceMotion ? {} : { clipPath: hidden, opacity: 0 },
+          visible: { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", opacity: 1 }
+        }}
+        transition={{ duration: reduceMotion ? 0 : duration, delay, ease: [0.16, 1, 0.3, 1] }}
+        {...props}
+      >
+        {children}
+      </Component>
+    </motion.span>
   );
 }
 
