@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { useReducedMotion } from "framer-motion";
 
 /**
@@ -20,7 +20,7 @@ export default function CanvasParticles({
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
   const particlesRef = useRef([]);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const dimensionsRef = useRef({ width: 0, height: 0 });
   const mouseRef = useRef({ x: null, y: null, radius: 180 });
 
   // Initialize particles
@@ -38,7 +38,7 @@ export default function CanvasParticles({
       canvas.style.width = `${rect.width}px`;
       canvas.style.height = `${rect.height}px`;
       ctx.scale(dpr, dpr);
-      setDimensions({ width: rect.width, height: rect.height });
+      dimensionsRef.current = { width: rect.width, height: rect.height };
       initParticles(rect.width, rect.height);
     };
 
@@ -56,8 +56,14 @@ export default function CanvasParticles({
     // Mouse interaction
     const handleMouseMove = (e) => {
       const rect = canvas.getBoundingClientRect();
-      mouseRef.current.x = e.clientX - rect.left;
-      mouseRef.current.y = e.clientY - rect.top;
+      // Only track if mouse is within or near the canvas
+      if (e.clientY >= rect.top && e.clientY <= rect.bottom) {
+        mouseRef.current.x = e.clientX - rect.left;
+        mouseRef.current.y = e.clientY - rect.top;
+      } else {
+        mouseRef.current.x = null;
+        mouseRef.current.y = null;
+      }
     };
 
     const handleMouseLeave = () => {
@@ -65,8 +71,8 @@ export default function CanvasParticles({
       mouseRef.current.y = null;
     };
 
-    canvas.addEventListener("mousemove", handleMouseMove);
-    canvas.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseleave", handleMouseLeave);
 
     window.addEventListener("resize", resize);
     resize();
@@ -79,7 +85,7 @@ export default function CanvasParticles({
         return;
       }
 
-      const { width, height } = dimensions;
+      const { width, height } = dimensionsRef.current;
       if (!width || !height) {
         animationRef.current = requestAnimationFrame(animate);
         return;
@@ -142,7 +148,7 @@ export default function CanvasParticles({
     };
 
     const drawStatic = (ctx) => {
-      const { width, height } = dimensions;
+      const { width, height } = dimensionsRef.current;
       ctx.clearRect(0, 0, width, height);
       particlesRef.current.forEach((p, i) => {
         ctx.beginPath();
@@ -172,8 +178,8 @@ export default function CanvasParticles({
     return () => {
       cancelAnimationFrame(animationRef.current);
       window.removeEventListener("resize", resize);
-      canvas.removeEventListener("mousemove", handleMouseMove);
-      canvas.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, [particleCount, maxDistance, particleColor, lineColor, particleSize, speed, reduceMotion]);
 
@@ -234,7 +240,7 @@ export function CanvasLines({
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
   const offsetRef = useRef({ x: 0, y: 0 });
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const dimensionsRef = useRef({ width: 0, height: 0 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -250,14 +256,14 @@ export function CanvasLines({
       canvas.style.width = `${rect.width}px`;
       canvas.style.height = `${rect.height}px`;
       ctx.scale(dpr, dpr);
-      setDimensions({ width: rect.width, height: rect.height });
+      dimensionsRef.current = { width: rect.width, height: rect.height };
     };
 
     window.addEventListener("resize", resize);
     resize();
 
     const animate = () => {
-      const { width, height } = dimensions;
+      const { width, height } = dimensionsRef.current;
       if (!width || !height) {
         animationRef.current = requestAnimationFrame(animate);
         return;
