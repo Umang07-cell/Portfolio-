@@ -1,184 +1,325 @@
-/* ============ SCROLL SNAP — immersive section scrolling ============ */
-html {
-  scroll-snap-type: y proximity;
+/* ==========================================================================
+   Scroll-Driven Animation Styles
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Clip-Path Reveal Animations
+   -------------------------------------------------------------------------- */
+.clip-reveal {
+  overflow: hidden;
 }
 
-.scroll-section {
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
+.clip-reveal__text {
+  display: inline-block;
+  will-change: clip-path, opacity;
 }
 
-.scroll-section--snap-center {
-  scroll-snap-align: center;
-}
+/* Direction variants — controlled via inline styles from Framer Motion */
+/* left-to-right: polygon(0 0, var(--progress) 0, var(--progress) 100%, 0 100%) */
+/* right-to-left: polygon(var(--progress) 0, 100% 0, 100% 100%, var(--progress) 100%) */
+/* center-out: polygon(50% 0, calc(50% + var(--progress)*50%) 0, calc(50% + var(--progress)*50%) 100%, 50% 100%) */
+/* inward: polygon(calc(var(--progress)*50%) 0, calc(100% - var(--progress)*50%) 0, calc(100% - var(--progress)*50%) 100%, calc(var(--progress)*50%) 100%) */
 
-.scroll-section--full {
-  min-height: 100vh;
-  min-height: 100dvh;
+/* --------------------------------------------------------------------------
+   Staggered Line Reveals
+   -------------------------------------------------------------------------- */
+.stagger-lines {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: var(--space-2);
 }
 
-.scroll-section--full > .container,
-.scroll-section--full > .container > * {
+.stagger-lines__line {
+  overflow: hidden;
+}
+
+.stagger-lines__line-text {
+  display: inline-block;
+  will-change: clip-path, opacity;
+}
+
+/* --------------------------------------------------------------------------
+   Parallax Elements
+   -------------------------------------------------------------------------- */
+.parallax {
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   Horizontal Scroll Progress
+   -------------------------------------------------------------------------- */
+.horizontal-scroll {
+  display: flex;
+  gap: var(--space-8);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.horizontal-scroll__item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
+/* --------------------------------------------------------------------------
+   Progress Bar Animations
+   -------------------------------------------------------------------------- */
+.progress-bar {
+  position: relative;
+  height: 4px;
+  background: var(--border-subtle);
+  overflow: hidden;
+}
+
+.progress-bar__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  transform-origin: left center;
+  transform: scaleX(0);
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   SVG Path Drawing
+   -------------------------------------------------------------------------- */
+.svg-draw {
+  fill: none;
+  will-change: stroke-dashoffset;
+}
+
+/* --------------------------------------------------------------------------
+   Scroll-Triggered Scale
+   -------------------------------------------------------------------------- */
+.scroll-scale {
+  will-change: transform, opacity;
+}
+
+/* --------------------------------------------------------------------------
+   Scroll-Triggered Opacity
+   -------------------------------------------------------------------------- */
+.scroll-fade {
+  will-change: opacity;
+}
+
+/* --------------------------------------------------------------------------
+   Scroll Direction Indicator
+   -------------------------------------------------------------------------- */
+.scroll-indicator {
+  position: fixed;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  z-index: 100;
+  pointer-events: none;
+  animation: scrollIndicatorBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollIndicatorBounce {
+  0%, 100% { opacity: 0.6; transform: translateX(-50%) translateY(0); }
+  50% { opacity: 1; transform: translateX(-50%) translateY(8px); }
+}
+
+/* --------------------------------------------------------------------------
+   Element Scroll Progress (for components tracking their own scroll)
+   -------------------------------------------------------------------------- */
+.scroll-tracker {
+  position: relative;
+}
+
+.scroll-tracker__progress {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Canvas Particle Container
+   -------------------------------------------------------------------------- */
+.canvas-particles {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   width: 100%;
+  height: 100%;
 }
 
-/* ============ CSS SCROLL-TIMELINE — scroll-driven animations ============ */
-@supports (animation-timeline: scroll()) {
-  /* Hero name lines reveal on scroll into view */
-  .scroll-driven-hero .hero__name-line {
-    animation: scrollRevealUp linear both;
-    animation-timeline: view();
-    animation-range: entry 0% cover 35%;
+/* --------------------------------------------------------------------------
+   Reduced Motion Overrides
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .clip-reveal__text,
+  .stagger-lines__line-text,
+  .parallax,
+  .horizontal-scroll__item,
+  .progress-bar__fill,
+  .svg-draw,
+  .scroll-scale,
+  .scroll-fade,
+  .scroll-indicator {
+    animation: none !important;
+    transition: none !important;
+    will-change: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%) !important;
+    stroke-dashoffset: 0 !important;
   }
 
-  .scroll-driven-hero .hero__name-line:nth-child(2) {
-    animation-range: entry 5% cover 40%;
-  }
-
-  /* Section headings scale subtly as they enter */
-  .scroll-section--animated .section-heading {
-    animation: scrollScaleIn linear both;
-    animation-timeline: view();
-    animation-range: entry 0% cover 30%;
-  }
-
-  /* Horizontal timeline cards parallax on vertical scroll */
-  .horizontal-timeline__card {
-    animation: scrollCardLift linear both;
-    animation-timeline: view();
-    animation-range: entry 10% cover 50%;
-  }
-
-  /* FinSight card glow intensifies on approach */
-  .scroll-section--animated .finsight-card {
-    animation: scrollGlowPulse linear both;
-    animation-timeline: view();
-    animation-range: entry 20% cover 60%;
-  }
-
-  /* Contact heading letter-spacing tightens on scroll */
-  .scroll-section--animated .contact__heading {
-    animation: scrollTighten linear both;
-    animation-timeline: view();
-    animation-range: entry 0% cover 45%;
+  .scroll-indicator {
+    display: none;
   }
 }
 
-@keyframes scrollRevealUp {
-  from {
-    opacity: 0.4;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes scrollScaleIn {
-  from {
-    opacity: 0.6;
-    transform: scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes scrollCardLift {
-  from {
-    opacity: 0.7;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes scrollGlowPulse {
-  from {
-    box-shadow: var(--shadow-card);
-  }
-  to {
-    box-shadow: var(--shadow-hover);
-  }
-}
-
-@keyframes scrollTighten {
-  from {
-    letter-spacing: 0.02em;
-    opacity: 0.75;
-  }
-  to {
-    letter-spacing: -0.01em;
-    opacity: 1;
-  }
-}
-
-/* Stagger reveal utility — CSS-only fallback when JS is slow */
-.stagger-grid > * {
+/* --------------------------------------------------------------------------
+   Intersection Observer Fallback Classes
+   (for non-Framer Motion implementations)
+   -------------------------------------------------------------------------- */
+.reveal-on-scroll {
   opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity 0.55s var(--ease-out-quart),
-    transform 0.55s var(--ease-out-quart);
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--ease-expo-out), transform 0.8s var(--ease-expo-out);
 }
 
-.stagger-grid.is-revealed > *:nth-child(1) { transition-delay: 0ms; }
-.stagger-grid.is-revealed > *:nth-child(2) { transition-delay: 80ms; }
-.stagger-grid.is-revealed > *:nth-child(3) { transition-delay: 160ms; }
-.stagger-grid.is-revealed > *:nth-child(4) { transition-delay: 240ms; }
-.stagger-grid.is-revealed > *:nth-child(5) { transition-delay: 320ms; }
-.stagger-grid.is-revealed > *:nth-child(6) { transition-delay: 400ms; }
-
-.stagger-grid.is-revealed > * {
+.reveal-on-scroll.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Horizontal timeline card badge when no image */
-.horizontal-timeline__card-badge-row {
-  padding: var(--space-4) var(--space-6) 0;
-  display: flex;
-  justify-content: flex-end;
+.reveal-on-scroll--left {
+  transform: translateX(-30px);
+}
+
+.reveal-on-scroll--left.is-visible {
+  transform: translateX(0);
+}
+
+.reveal-on-scroll--right {
+  transform: translateX(30px);
+}
+
+.reveal-on-scroll--right.is-visible {
+  transform: translateX(0);
+}
+
+.reveal-on-scroll--scale {
+  transform: scale(0.9);
+}
+
+.reveal-on-scroll--scale.is-visible {
+  transform: scale(1);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-snap-type: none;
-  }
-
-  .stagger-grid > * {
+  .reveal-on-scroll {
     opacity: 1;
     transform: none;
     transition: none;
   }
 }
 
-/* V2 scroll-driven surfaces: composited transforms keep the long-form page smooth. */
-.hero-v2__inner,
-.projects-slider__head h2,
-.timeline-v2__entry,
-.project-slide,
-.animated-svg-icon {
-  will-change: transform, opacity;
+/* --------------------------------------------------------------------------
+   Scroll Snap Utilities
+   -------------------------------------------------------------------------- */
+.snap-x {
+  scroll-snap-type: x mandatory;
 }
 
-.projects-slider__track {
-  scroll-padding-inline: max(5vw, calc((100vw - var(--container)) / 2));
+.snap-y {
+  scroll-snap-type: y mandatory;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+}
+
+.snap-center {
+  scroll-snap-align: center;
+}
+
+.snap-end {
+  scroll-snap-align: end;
+}
+
+/* --------------------------------------------------------------------------
+   Smooth Scroll Behavior (fallback when Lenis not used)
+   -------------------------------------------------------------------------- */
+html.smooth-scroll {
+  scroll-behavior: auto; /* Disabled to prevent Lenis conflicts */
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-v2__inner,
-  .projects-slider__head h2,
-  .timeline-v2__entry,
-  .project-slide,
-  .animated-svg-icon {
-    will-change: auto;
+  html.smooth-scroll {
+    scroll-behavior: auto;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Sticky Position Helpers
+   -------------------------------------------------------------------------- */
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.sticky-bottom {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+}
+
+/* --------------------------------------------------------------------------
+   Viewport Height Helpers (for mobile address bar handling)
+   -------------------------------------------------------------------------- */
+.vh-100 {
+  height: 100vh;
+  height: 100dvh;
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* --------------------------------------------------------------------------
+   Print Styles
+   -------------------------------------------------------------------------- */
+@media print {
+  .scroll-section {
+    page-break-inside: avoid;
+  }
+
+  .hero-v2__orbs,
+  .hero-v2__grid,
+  .hero-v2__icon-groups,
+  .footer-v2__bottom,
+  .projects-slider__nav,
+  .projects-slider__hint,
+  .projects-slider__progress-wrap,
+  .scroll-indicator {
+    display: none !important;
+  }
+
+  .clip-reveal__text,
+  .stagger-lines__line-text {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%) !important;
+    opacity: 1 !important;
   }
 }
