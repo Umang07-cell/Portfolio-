@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import SectionHeader from "./ui/SectionHeader";
+import ScrollScaleTitle from "./ui/ScrollScaleTitle";
 import TechTag from "./ui/TechTag";
 import { useStaggerInView, defaultTransition } from "../hooks/useScrollReveal";
 import { techGroups } from "../data/content";
@@ -10,10 +10,8 @@ export default function TechStack() {
   return (
     <section id="stack" className="scroll-section scroll-section--animated">
       <div className="container">
-        <SectionHeader
-          overline="TECHNICAL ARSENAL"
-          heading="Tools I reach for, grouped by what they're for."
-        />
+        <span className="overline">TECHNICAL ARSENAL</span>
+        <ScrollScaleTitle lines={["What I", "reach for."]} align="left" />
         <motion.div
           ref={ref}
           className="tech-groups"
