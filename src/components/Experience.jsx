@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import SectionHeader from "./ui/SectionHeader";
+import ScrollScaleTitle from "./ui/ScrollScaleTitle";
 import Badge from "./ui/Badge";
 import TechTag from "./ui/TechTag";
 import { experience } from "../data/content";
@@ -8,7 +8,8 @@ export default function Experience() {
   return (
     <section id="experience" className="scroll-section scroll-section--animated">
       <div className="container">
-        <SectionHeader overline="EXPERIENCE" heading="Three roles. One direction." />
+        <span className="overline">EXPERIENCE</span>
+        <ScrollScaleTitle lines={["Where I've", "shipped code."]} align="left" />
 
         <div className="timeline">
           <motion.div
