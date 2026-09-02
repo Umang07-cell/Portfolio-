@@ -71,7 +71,7 @@ export const defaultTransition = {
 };
 
 /** Container + item variants for staggered grid/list reveals */
-export function useStaggerInView(stagger = 0.08, threshold = 0.12, rootMargin = "0px 0px -60px 0px") {
+export function useStaggerInView(stagger = 0.08, threshold = 0.05, rootMargin = "0px 0px 0px 0px") {
   const [ref, inView] = useScrollReveal(threshold, rootMargin);
 
   const containerVariants = {
