@@ -9,7 +9,7 @@ export const profile = {
   email: "umangpawar629@gmail.com",
   github: "https://github.com/Umang07-cell",
   githubLabel: "github.com/Umang07-cell",
-  linkedin: null, // data-todo: Add LinkedIn URL
+  linkedin: "https://www.linkedin.com/in/umang-pawar-208157314",
   resumeUrl: "/Umang_Pawar_AI_Engineer.pdf",
 };
 
@@ -54,10 +54,10 @@ export const finsight = {
     "Railway",
   ],
   features: [
-    { icon: "Bot", title: "Multi-mode AI", detail: "Fast / Standard / Deep Research" },
-    { icon: "FileText", title: "SEC Filing Analysis", detail: "Upload 10-K PDFs, RAG query" },
-    { icon: "BarChart3", title: "Visual Reports", detail: "Charts + recommendations" },
-    { icon: "MessageSquare", title: "Chat Memory", detail: "Full conversation history" },
+    { icon: "🤖", title: "Multi-mode AI", detail: "Fast / Standard / Deep Research" },
+    { icon: "📄", title: "SEC Filing Analysis", detail: "Upload 10-K PDFs, RAG query" },
+    { icon: "📊", title: "Visual Reports", detail: "Charts + recommendations" },
+    { icon: "💬", title: "Chat Memory", detail: "Full conversation history" },
   ],
   engineeringNote:
     "Resolved 6 production bugs including Pydantic v2 migration, deprecated Groq model string, Railway $PORT binding, and CORS header conflicts. Full MLOps ownership from commit to Railway deployment.",
@@ -92,10 +92,19 @@ export const otherProjects = [
     labelVariant: "success",
     title: "HR-PolicyIQ",
     subtitle: "ABAC-Secured HR Assistant Chatbot",
-    stat: "100+ employees · 6+ HR modules · Daily use",
+    stats: [
+      { value: "100+", label: "Employees" },
+      { value: "6+", label: "HR Modules" },
+    ],
     stack: ["FastAPI", "LangChain", "ChromaDB", "Groq", "ABAC", "React"],
     detail:
       "End-to-end RAG pipeline: document ingestion → HuggingFace embeddings → ChromaDB retrieval → grounded Llama 3 answers with PII redaction, gated by attribute-based access control.",
+    features: [
+      { icon: "🔒", title: "ABAC Access Control", detail: "Permission-gated by role" },
+      { icon: "🕵️", title: "PII Redaction", detail: "Automatic on every answer" },
+      { icon: "📚", title: "6+ HR Modules", detail: "Single system of record" },
+      { icon: "📎", title: "Source Citation", detail: "Every answer, grounded" },
+    ],
     links: { note: "Private/internal system — no public GitHub" },
     size: "large",
   },
@@ -107,6 +116,12 @@ export const otherProjects = [
     stack: ["Python", "FastAPI", "BeautifulSoup", "Selenium", "LLM Enrichment", "PostgreSQL"],
     detail:
       "Automated pipeline identifying HR and decision-maker contacts at target companies — now powering LanceSoft's live B2B outreach.",
+    features: [
+      { icon: "🕸️", title: "Automated Scraping", detail: "BeautifulSoup + Selenium" },
+      { icon: "🧠", title: "LLM Enrichment", detail: "Structured contact profiling" },
+      { icon: "📤", title: "Exportable Lists", detail: "Ready for outreach" },
+      { icon: "📡", title: "Live B2B Backbone", detail: "Powers real outreach today" },
+    ],
     links: { note: "Internal system — no public repo" },
     size: "large",
   },
@@ -118,6 +133,12 @@ export const otherProjects = [
     stack: ["FastAPI", "React", "Groq", "LangChain", "HuggingFace", "RAG"],
     detail:
       "Job scraper + ATS resume scorer + voice mock interview engine + RAG career chatbot — unified into one product.",
+    features: [
+      { icon: "🔎", title: "Daily Job Scraper", detail: "Live listings, refreshed daily" },
+      { icon: "📝", title: "ATS Resume Scorer", detail: "Scored against target JDs" },
+      { icon: "🎙️", title: "Voice Mock Interviews", detail: "Dynamic follow-up questions" },
+      { icon: "💬", title: "RAG Career Chatbot", detail: "Grounded career guidance" },
+    ],
     links: { github: null }, // data-todo: Add Atlas-AI GitHub link if public
     size: "medium",
   },
@@ -129,7 +150,51 @@ export const otherProjects = [
     stack: ["Python", "Groq (Llama 3.3 70B)", "Prompt Engineering"],
     detail:
       "FAQ answering, lead qualification, escalation detection, and conversation summarization in a single CLI workflow.",
+    features: [
+      { icon: "❓", title: "FAQ Answering", detail: "SOP-grounded, RAG-style" },
+      { icon: "🎯", title: "Lead Qualification", detail: "Structured intake flow" },
+      { icon: "🚨", title: "Escalation Detection", detail: "Keyword + regex dual-layer" },
+      { icon: "📋", title: "Auto-Summarization", detail: "Every conversation logged" },
+    ],
     links: { github: "https://github.com/Umang07-cell/closira-AI-project" },
+    size: "medium",
+  },
+  {
+    label: "PAYMENT INFRASTRUCTURE",
+    labelVariant: "accent",
+    title: "PaySettle",
+    subtitle: "Payment Exception & Reconciliation Engine",
+    stats: [
+      { value: "9", label: "REST Endpoints" },
+      { value: "5", label: "Anomaly Rules" },
+    ],
+    stack: ["Python", "Flask", "MySQL", "SQLAlchemy", "REST APIs", "Chart.js"],
+    detail:
+      "Automated payment reconciliation across UPI/NEFT/RTGS/IMPS. A 5-rule anomaly engine (duplicate, high-value >₹90K, stale pending >24hr, round-trip, failed) flags exceptions in real time across 9 REST endpoints, with a Chart.js analytics dashboard and CSV export.",
+    features: [
+      { icon: "⚠️", title: "5-Rule Anomaly Engine", detail: "Duplicate, high-value, stale & more" },
+      { icon: "🔌", title: "9 REST Endpoints", detail: "Full reconciliation API" },
+      { icon: "📊", title: "Chart.js Dashboard", detail: "Real-time analytics" },
+      { icon: "📥", title: "CSV Export", detail: "For downstream reporting" },
+    ],
+    links: { live: null }, // data-todo: Add PaySettle live URL
+    size: "medium",
+  },
+  {
+    label: "ML-INTEGRATED PLATFORM",
+    labelVariant: "accent",
+    title: "TheReturnPath",
+    subtitle: "ML-Integrated Missing Persons Platform",
+    stack: ["React.js", "Node.js", "face_recognition", "REST API"],
+    detail:
+      "Integrated a Python face_recognition ML model into production via a Node.js REST API for real-time face matching and alert notifications.",
+    features: [
+      { icon: "🧬", title: "Face Recognition ML", detail: "Python model, production-wired" },
+      { icon: "⚡", title: "Real-time Matching", detail: "Node.js REST API" },
+      { icon: "🔔", title: "Alert Notifications", detail: "On confirmed match" },
+      { icon: "🎓", title: "IJRASET Published", detail: "Peer-reviewed research" },
+    ],
+    links: { live: null, paper: "https://doi.org/10.22214/ijraset.2025.75012" }, // data-todo: Add live demo URL
     size: "medium",
   },
 ];
@@ -146,9 +211,11 @@ export const techGroups = [
       "FAISS",
       "HuggingFace Embeddings",
       "LLM Orchestration",
+      "Multi-Agent Systems",
       "Prompt Engineering",
       "Vector Databases",
       "NLP/NLG",
+      "MLOps",
     ],
   },
   {
@@ -156,7 +223,9 @@ export const techGroups = [
     items: [
       "FastAPI",
       "Flask",
+      "Django",
       "Node.js",
+      "Express.js",
       "REST APIs",
       "PostgreSQL",
       "MySQL",
@@ -180,6 +249,8 @@ export const techGroups = [
       "NumPy",
       "Scikit-learn",
       "ETL Pipelines",
+      "EDA",
+      "Statistical Analysis",
     ],
   },
   {
@@ -190,16 +261,26 @@ export const techGroups = [
 
 export const experience = [
   {
-    role: "AI Engineer Intern",
-    company: "LanceSoft",
-    date: "Jul 2026 – Present",
-    badge: "CURRENT",
+    role: "Software Developer Intern",
+    company: "Suvidha Foundation",
+    date: "Sep 2025 – Nov 2025",
+    badge: null,
     points: [
-      "Policy module: document upload, version/supersede workflows, 100+ employees",
-      "AI Lead Generation Engine: live B2B outreach backbone",
-      "End-to-end ownership: requirements → deployment",
+      "Built NLP/NLG-powered web applications with text preprocessing and language generation pipelines",
+      "Work directly applicable to LLM output processing and later AI workflow development",
     ],
-    stack: ["FastAPI", "LangChain", "Groq", "ChromaDB", "PostgreSQL"],
+    stack: ["Python", "NLP", "NLG"],
+  },
+  {
+    role: "Software Developer Intern",
+    company: "Syncsas Technologies",
+    date: "Nov 2025 – Mar 2026",
+    badge: null,
+    points: [
+      "3 client-facing full-stack features, zero post-release defects",
+      "CI/CD via GitHub Actions: 60% reduction in manual deployment steps",
+    ],
+    stack: ["Python", "Flask", "PostgreSQL", "GitHub Actions"],
   },
   {
     role: "Data Analyst Intern",
@@ -213,38 +294,71 @@ export const experience = [
     stack: ["Python", "Pandas", "SQL"],
   },
   {
-    role: "Software Developer Intern",
-    company: "Syncsas Technologies",
-    date: "Nov 2025 – Mar 2026",
-    badge: null,
+    role: "AI Engineer Intern",
+    company: "LanceSoft",
+    date: "Jul 2026 – Present",
+    badge: "CURRENT",
     points: [
-      "3 client-facing full-stack features, zero post-release defects",
-      "CI/CD via GitHub Actions: 60% reduction in manual deployment steps",
+      "Policy module: document upload, version/supersede workflows, 100+ employees",
+      "AI Lead Generation Engine: live B2B outreach backbone",
+      "End-to-end ownership: requirements → deployment",
     ],
-    stack: ["Python", "Flask", "PostgreSQL", "GitHub Actions"],
+    stack: ["FastAPI", "LangChain", "Groq", "ChromaDB", "PostgreSQL"],
   },
 ];
 
 export const journey = [
   {
     year: "2022",
-    text: "Started programming. Began with Python basics, building small scripts to understand how things work.",
+    text: "Completed HSC (Science) at Prerna Junior College, Nagpur, scoring 81%.",
   },
   {
-    year: "2023",
-    text: "Deepened into data: Pandas, NumPy, SQL. First contact with machine learning — Scikit-learn, regression models, understanding that data quality matters.",
-  },
-  {
-    year: "2024",
-    text: "Published ML research in IJRASET. First formal signal that I could contribute something original. Software development internship (Syncsas). Shipped production code for real clients for the first time.",
+    year: "2022",
+    text: "Began a B.Tech in Computer Science & Engineering at G.H. Raisoni University, Nagpur.",
   },
   {
     year: "2025",
-    text: "Discovered LangChain and RAG. The moment I understood what a grounded LLM answer meant — and what it takes to build one reliably — was the shift. Earned Google AI Professional Certificate.",
+    text: "Published ML research in IJRASET — first formal research credit, tied to TheReturnPath (an ML-integrated missing persons platform).",
+  },
+  {
+    year: "2025",
+    text: "Joined Suvidha Foundation as a Software Developer Intern, building NLP/NLG-powered web applications.",
+  },
+  {
+    year: "2025",
+    text: "Joined Syncsas Technologies as a Software Developer Intern, shipping full-stack features in Python and Flask.",
+  },
+  {
+    year: "2025",
+    text: "Shipped 3 client-facing features with zero post-release defects, and set up CI/CD with GitHub Actions — cutting manual deployment steps by 60%.",
   },
   {
     year: "2026",
-    text: "AI Engineer at LanceSoft. Two production systems in use by real people. FinSight live on Railway. Atlas-AI deployed. Figuring out what comes next.",
+    text: "Moved to CarrierDomain as a Data Analyst Intern, building ETL pipelines over 637,000+ live client records.",
+  },
+  {
+    year: "2026",
+    text: "Shipped an Enrollment Performance Dashboard, adopted by stakeholders as the primary tool for weekly decisions.",
+  },
+  {
+    year: "2026",
+    text: "Graduated B.Tech in Computer Science & Engineering from G.H. Raisoni University, Nagpur.",
+  },
+  {
+    year: "2026",
+    text: "Earned the Google AI Professional Certificate.",
+  },
+  {
+    year: "2026",
+    text: "Joined LanceSoft as an AI Engineer Intern, owning the Policy module for HR-PolicyIQ — now used by 100+ employees daily.",
+  },
+  {
+    year: "2026",
+    text: "Shipped an AI-powered Lead Generation Engine at LanceSoft, now the backbone of live B2B outreach.",
+  },
+  {
+    year: "2026",
+    text: "Built and deployed four AI platforms outside of work — Atlas-AI, FinSight, PaySettle, and Closira.",
   },
 ];
 
