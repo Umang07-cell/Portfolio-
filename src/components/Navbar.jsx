@@ -5,7 +5,7 @@ import { profile } from "../data/content";
 import ScrollProgress from "./ui/ScrollProgress";
 
 const LINKS = [
-  { label: "Work", href: "#finsight" },
+  { label: "Work", href: "#work" },
   { label: "Projects", href: "#projects" },
   { label: "Stack", href: "#stack" },
   { label: "Experience", href: "#experience" },
@@ -70,7 +70,7 @@ export default function Navbar() {
           transition: "transform 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94), background 300ms ease, border-color 300ms ease, backdrop-filter 300ms ease",
         }}
       >
-        <div className="container navbar__inner">
+        <div className="navbar__inner">
           <a
             href="#top"
             className="navbar__logo mono"
