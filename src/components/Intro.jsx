@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import ClipPathReveal, { ClipPathLines } from "./ui/ClipPathReveal";
 import ScrollScrubText from "./ui/ScrollScrubText";
+import CodeTerminal from "./ui/CodeTerminal";
 import { profile } from "../data/content";
 
 const STATS = [
@@ -80,23 +81,16 @@ export default function Intro() {
             ))}
           </div>
           
-          {/* Chatbot iPhone Mockup Placeholder */}
+          {/* Code Terminal Visual */}
           <motion.div 
             className="intro__chatbot-placeholder"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "0px 0px -20% 0px" }}
             transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+            style={{ display: 'flex', justifyContent: 'center', width: '100%', marginTop: '32px' }}
           >
-            <div className="iphone-frame">
-              <div className="iphone-notch"></div>
-              <div className="iphone-screen">
-                <div className="chatbot-placeholder-text">
-                  <span className="mono">AI Chatbot</span>
-                  <p>Coming Soon...</p>
-                </div>
-              </div>
-            </div>
+            <CodeTerminal />
           </motion.div>
         </div>
 

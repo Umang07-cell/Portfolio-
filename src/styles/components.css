@@ -374,9 +374,11 @@
   flex: 1;
   background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
   position: relative;
+  overflow: hidden;
 }
 
 .chatbot-placeholder-text {
