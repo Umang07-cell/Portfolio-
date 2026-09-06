@@ -10,7 +10,7 @@ export const profile = {
   github: "https://github.com/Umang07-cell",
   githubLabel: "github.com/Umang07-cell",
   linkedin: "https://www.linkedin.com/in/umang-pawar-208157314",
-  resumeUrl: "/Umang_Pawar_AI_Engineer.pdf",
+  resumeUrl: "Umang_Pawar_AI_Engineer.pdf",
 };
 
 export const heroCopy = {
@@ -455,4 +455,19 @@ export const currentlyBuilding = [
     detail: "CI/CD for AI systems, model versioning, monitoring, rollback strategies.",
     status: "LEARNING",
   },
+];
+
+export const challenges = [
+  {
+    title: "Orchestrating Multi-Agent Systems",
+    detail: "Managing state, memory, and graceful fallbacks when autonomous AI agents encounter unexpected outputs, loops, or API rate limits in production workflows.",
+  },
+  {
+    title: "Optimizing RAG Context Windows",
+    detail: "Balancing the need for extensive document context against LLM token limits and latency when analyzing large-scale enterprise data and messy PDFs.",
+  },
+  {
+    title: "Production LLM Reliability",
+    detail: "Moving beyond basic prompt engineering to build robust systems that anticipate hallucinations, parse unpredictable JSON, and gracefully recover from failure modes.",
+  }
 ];

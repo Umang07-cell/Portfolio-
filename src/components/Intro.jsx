@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import ClipPathReveal, { ClipPathLines } from "./ui/ClipPathReveal";
 import ScrollScrubText from "./ui/ScrollScrubText";
-import CodeTerminal from "./ui/CodeTerminal";
+import AiChatInterface from "./ui/AiChatInterface";
 import { profile } from "../data/content";
 
 const STATS = [
@@ -80,8 +80,8 @@ export default function Intro() {
               </motion.div>
             ))}
           </div>
-          
-          {/* Code Terminal Visual */}
+
+          {/* AI Chat Interface */}
           <motion.div 
             className="intro__chatbot-placeholder"
             initial={{ opacity: 0, y: 40 }}
@@ -90,7 +90,7 @@ export default function Intro() {
             transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
             style={{ display: 'flex', justifyContent: 'center', width: '100%', marginTop: '32px' }}
           >
-            <CodeTerminal />
+            <AiChatInterface />
           </motion.div>
         </div>
 

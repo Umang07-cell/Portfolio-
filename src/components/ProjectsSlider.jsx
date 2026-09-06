@@ -2,11 +2,12 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, GitBranch, Lock } from "lucide-react";
 import ScrollScaleTitle from "./ui/ScrollScaleTitle";
-import ClipPathReveal from "./ui/ClipPathReveal";
 import TechLogoMarquee, { SVGLogoItem } from "./ui/TechLogoMarquee";
 import Badge from "./ui/Badge";
 import TechTag from "./ui/TechTag";
 import { finsight, otherProjects } from "../data/content";
+import { useScrollDirectionReveal } from "../hooks/useScrollDirectionReveal";
+
 
 const PROJECT_ICONS = {
   finsight: "📊",
@@ -67,29 +68,68 @@ export default function ProjectsSlider() {
 
       <div className="projects-slider__list">
         {slides.map((slide) => (
-          <motion.article
-            key={slide.id}
-            className="projects-slider__card"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1, margin: "0px 0px -50px 0px" }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-          >
-            <ProjectSlide slide={slide} />
-          </motion.article>
+          <CinematicProjectCard key={slide.id} slide={slide} />
         ))}
       </div>
     </section>
   );
 }
 
-function ProjectSlide({ slide }) {
+import { useRef } from "react";
+import { useScroll, useTransform } from "framer-motion";
+
+function CinematicProjectCard({ slide }) {
+  const ref = useRef(null);
+  
+  // Track this specific card's position in the viewport
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  // Continuous Y mapping gives immediate physical feedback when scrolling reverses
+  // Scale and opacity have a small plateau in the center for readability
+  const scale = useTransform(scrollYProgress, [0, 0.35, 0.65, 1], [0.85, 1, 1, 0.85]);
+  const y = useTransform(scrollYProgress, [0, 0.5, 1], [150, 0, -150]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.2, 1, 1, 0.2]);
+
+  return (
+    <div ref={ref} className="projects-slider__card-wrapper" style={{ perspective: "1200px" }}>
+      <motion.article
+        className="projects-slider__card"
+        style={{ scale, y, opacity }}
+      >
+        <ProjectSlide slide={slide} progress={scrollYProgress} />
+      </motion.article>
+    </div>
+  );
+}
+
+function ProjectSlide({ slide, progress }) {
   const [activeFeature, setActiveFeature] = useState(0);
   const icon = PROJECT_ICONS[slide.id] || "🚀";
 
+  // Staggered scrub transforms, continuous peaking at 0.5
+  // The offsets stagger the peak slightly to create a wave effect
+  
+  // 1. Image visual
+  const imgY = useTransform(progress, [0, 0.5, 1], [80, 0, -80]);
+
+  // 2. Header (title/subtitle)
+  const headY = useTransform(progress, [0, 0.5, 1], [100, 0, -100]);
+
+  // 3. Stats & Desc
+  const descY = useTransform(progress, [0, 0.5, 1], [120, 0, -120]);
+
+  // 4. Features & Tags
+  const featY = useTransform(progress, [0, 0.5, 1], [140, 0, -140]);
+
   return (
     <div className="projects-slider__slide">
-      <div className="projects-slider__slide-visual">
+      <motion.div 
+        className="projects-slider__slide-visual"
+        style={{ y: imgY }}
+      >
         <div className="projects-slider__slide-image-placeholder">
           <div className="projects-slider__chrome">
             <span className="projects-slider__chrome-dot" />
@@ -114,14 +154,17 @@ function ProjectSlide({ slide }) {
             {slide.badge}
           </Badge>
         )}
-      </div>
+      </motion.div>
 
       <div className="projects-slider__slide-content">
-        <div className="projects-slider__slide-header">
+        <motion.div 
+          className="projects-slider__slide-header"
+          style={{ y: headY }}
+        >
           <div>
-            <ClipPathReveal direction="left-to-right" delay={0.1} className="projects-slider__slide-label">
+            <div className="projects-slider__slide-label" style={{ display: "inline-block", marginBottom: "8px" }}>
               {slide.badge}
-            </ClipPathReveal>
+            </div>
             <h3 className="projects-slider__slide-title">{slide.title}</h3>
             <p className="projects-slider__slide-subtitle">{slide.subtitle}</p>
           </div>
@@ -147,66 +190,66 @@ function ProjectSlide({ slide }) {
               </a>
             )}
           </div>
-        </div>
+        </motion.div>
 
-        {slide.stats && slide.stats.length > 0 && (
-          <div className="projects-slider__slide-stats">
-            {slide.stats.map((stat) => (
-              <div key={stat.label} className="projects-slider__stat">
-                <span className="projects-slider__stat-value mono">{stat.value}</span>
-                <span className="projects-slider__stat-label">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-        )}
-
-        <p className="projects-slider__slide-description">{slide.description}</p>
-
-        {slide.features && slide.features.length > 0 && (
-          <div className="projects-slider__slide-features">
-            {slide.features.map((feature, i) => (
-              <motion.div
-                key={feature.title}
-                className={`projects-slider__feature ${i === activeFeature ? "active" : ""}`}
-                onClick={() => setActiveFeature(i)}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
-                transition={{ duration: 0.4, delay: i * 0.08, ease: "easeOut" }}
-              >
-                <div className="projects-slider__feature-icon">
-                  <span>{feature.icon}</span>
+        <motion.div style={{ y: descY }}>
+          {slide.stats && slide.stats.length > 0 && (
+            <div className="projects-slider__slide-stats">
+              {slide.stats.map((stat) => (
+                <div key={stat.label} className="projects-slider__stat">
+                  <span className="projects-slider__stat-value mono">{stat.value}</span>
+                  <span className="projects-slider__stat-label">{stat.label}</span>
                 </div>
-                <div>
-                  <p className="projects-slider__feature-title">{feature.title}</p>
-                  <p className="projects-slider__feature-detail">{feature.detail}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        )}
-
-        <div className="projects-slider__slide-tags">
-          {slide.stack?.map((tech) => (
-            <TechTag key={tech}>{tech}</TechTag>
-          ))}
-        </div>
-
-        {slide.stack && slide.stack.length > 0 && (
-          <div className="projects-slider__tech-marquee">
-            <TechLogoMarquee
-              logos={slide.stack.map((tech) => (
-                <SVGLogoItem key={tech} width={150} height={36}>
-                  <span className="marquee-tech-pill mono">{tech}</span>
-                </SVGLogoItem>
               ))}
-              speed={30}
-              logoWidth={150}
-              logoHeight={36}
-              gap={14}
-            />
+            </div>
+          )}
+
+          <p className="projects-slider__slide-description">{slide.description}</p>
+        </motion.div>
+
+        <motion.div style={{ y: featY }}>
+          {slide.features && slide.features.length > 0 && (
+            <div className="projects-slider__slide-features">
+              {slide.features.map((feature, i) => (
+                <div
+                  key={feature.title}
+                  className={`projects-slider__feature ${i === activeFeature ? "active" : ""}`}
+                  onClick={() => setActiveFeature(i)}
+                >
+                  <div className="projects-slider__feature-icon">
+                    <span>{feature.icon}</span>
+                  </div>
+                  <div>
+                    <p className="projects-slider__feature-title">{feature.title}</p>
+                    <p className="projects-slider__feature-detail">{feature.detail}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="projects-slider__slide-tags">
+            {slide.stack?.map((tech) => (
+              <TechTag key={tech}>{tech}</TechTag>
+            ))}
           </div>
-        )}
+
+          {slide.stack && slide.stack.length > 0 && (
+            <div className="projects-slider__tech-marquee">
+              <TechLogoMarquee
+                logos={slide.stack.map((tech) => (
+                  <SVGLogoItem key={tech} width={150} height={36}>
+                    <span className="marquee-tech-pill mono">{tech}</span>
+                  </SVGLogoItem>
+                ))}
+                speed={30}
+                logoWidth={150}
+                logoHeight={36}
+                gap={14}
+              />
+            </div>
+          )}
+        </motion.div>
       </div>
     </div>
   );
