@@ -43,7 +43,7 @@ function ExperienceNode({ node, index }) {
       className="timeline__node"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3, margin: "0px 0px -50px 0px" }}
+      viewport={{ once: true, margin: "0px 0px -25% 0px" }}
       transition={{ 
         duration: 0.8, 
         delay: Math.min(index * 0.1, 0.4), 

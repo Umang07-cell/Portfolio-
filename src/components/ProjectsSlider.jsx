@@ -89,9 +89,10 @@ function CinematicProjectCard({ slide }) {
 
   // Continuous Y mapping gives immediate physical feedback when scrolling reverses
   // Scale and opacity have a small plateau in the center for readability
-  const scale = useTransform(scrollYProgress, [0, 0.35, 0.65, 1], [0.85, 1, 1, 0.85]);
-  const y = useTransform(scrollYProgress, [0, 0.5, 1], [150, 0, -150]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.2, 1, 1, 0.2]);
+  const scale = useTransform(scrollYProgress, [0, 0.35, 0.65, 1], [0.94, 1, 1, 0.94]);
+  // Reduced Y transform so cards don't separate too far from each other
+  const y = useTransform(scrollYProgress, [0, 0.5, 1], [50, 0, -50]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.4, 1, 1, 0.4]);
 
   return (
     <div ref={ref} className="projects-slider__card-wrapper" style={{ perspective: "1200px" }}>

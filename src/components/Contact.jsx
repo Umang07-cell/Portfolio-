@@ -11,7 +11,7 @@ export default function Contact() {
           className="overline"
           initial={{ opacity: 0, x: -16 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
+          viewport={{ once: true, margin: "0px 0px -25% 0px" }}
           transition={{ duration: 0.4 }}
         >
           CONTACT
@@ -20,7 +20,7 @@ export default function Contact() {
           className="contact__heading"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
+          viewport={{ once: true, margin: "0px 0px -25% 0px" }}
           transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           Let's build something intelligent.
@@ -29,7 +29,7 @@ export default function Contact() {
           className="contact__sub"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
+          viewport={{ once: true, margin: "0px 0px -25% 0px" }}
           transition={{ duration: 0.4, delay: 0.2 }}
         >
           Open to AI Engineer roles in Pune, Bangalore, Hyderabad — and interesting problems
@@ -40,7 +40,7 @@ export default function Contact() {
           className="contact__ctas"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, margin: "0px 0px -25% 0px" }}
           transition={{ duration: 0.4, delay: 0.3 }}
         >
           <a href={`mailto:${profile.email}`} className="contact__cta">

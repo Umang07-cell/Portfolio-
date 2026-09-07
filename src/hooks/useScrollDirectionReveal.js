@@ -66,7 +66,7 @@ export function useScrollDirectionReveal(threshold = 0.12) {
         threshold,
         // Shrink the bottom margin slightly so the card exits cleanly
         // before the next card fully enters, giving a nice stagger feel.
-        rootMargin: "0px 0px -40px 0px",
+        rootMargin: "0px 0px -25% 0px",
       }
     );
 

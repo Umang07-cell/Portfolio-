@@ -35,7 +35,7 @@ export const finsight = {
   badge: "LIVE",
   subtitle: "AI Financial Intelligence Platform",
   github: "https://github.com/Umang07-cell/finsight",
-  live: "https://finsight-ai-finance.up.railway.app",
+  live: "https://finsight-17ni.onrender.com/#/chat",
   problem:
     "Financial reports are dense, jargon-heavy, and time-consuming to analyze. Retail investors and analysts need answers, not PDFs.",
   solution:
@@ -139,7 +139,7 @@ export const otherProjects = [
       { icon: "🎙️", title: "Voice Mock Interviews", detail: "Dynamic follow-up questions" },
       { icon: "💬", title: "RAG Career Chatbot", detail: "Grounded career guidance" },
     ],
-    links: { github: null }, // data-todo: Add Atlas-AI GitHub link if public
+    links: { github: null, live: "https://atlas-frontend-uo1y.onrender.com/dashboard" }, // data-todo: Add Atlas-AI GitHub link if public
     size: "medium",
   },
   {
@@ -194,7 +194,7 @@ export const otherProjects = [
       { icon: "🔔", title: "Alert Notifications", detail: "On confirmed match" },
       { icon: "🎓", title: "IJRASET Published", detail: "Peer-reviewed research" },
     ],
-    links: { live: null, paper: "https://doi.org/10.22214/ijraset.2025.75012" }, // data-todo: Add live demo URL
+    links: { live: "https://returnpath3.vercel.app/", paper: "https://doi.org/10.22214/ijraset.2025.75012" }, // data-todo: Add live demo URL
     size: "medium",
   },
 ];
@@ -373,7 +373,7 @@ export const horizontalTimeline = [
     imageAlt: "FinSight dashboard showing financial analysis",
     badge: "LIVE",
     tags: ["FastAPI", "LangChain", "ChromaDB", "Groq", "React"],
-    link: "https://finsight-ai-finance.up.railway.app",
+    link: "https://finsight-17ni.onrender.com/#/chat",
     linkText: "Live Demo",
   },
   {
@@ -407,7 +407,8 @@ export const horizontalTimeline = [
     image: null,
     badge: "DEPLOYED",
     tags: ["FastAPI", "React", "Groq", "LangChain", "RAG"],
-    link: null,
+    link: "https://atlas-frontend-uo1y.onrender.com/dashboard",
+    linkText: "Live Demo",
   },
   {
     id: "closira",
@@ -459,15 +460,27 @@ export const currentlyBuilding = [
 
 export const challenges = [
   {
-    title: "Orchestrating Multi-Agent Systems",
-    detail: "Managing state, memory, and graceful fallbacks when autonomous AI agents encounter unexpected outputs, loops, or API rate limits in production workflows.",
+    title: "Grounding RAG Architecture",
+    detail: "Early versions of the chatbot would hallucinate. I solved this by tightly grounding responses to retrieved context to eliminate LLM hallucinations.",
   },
   {
-    title: "Optimizing RAG Context Windows",
-    detail: "Balancing the need for extensive document context against LLM token limits and latency when analyzing large-scale enterprise data and messy PDFs.",
+    title: "Production Stress-Testing",
+    detail: "Designing aggressive test cases to push system limits rather than relying on the happy path, and iteratively debugging backend bottlenecks before company-wide rollout.",
   },
   {
-    title: "Production LLM Reliability",
-    detail: "Moving beyond basic prompt engineering to build robust systems that anticipate hallucinations, parse unpredictable JSON, and gracefully recover from failure modes.",
+    title: "Legacy Auth Migration",
+    detail: "Getting up to speed on unfamiliar production codebases from scratch to migrate core authentication systems without breaking active dependencies.",
+  },
+  {
+    title: "Vector Database Evaluation",
+    detail: "Choosing the right vector database required researching multiple options and weighing them strictly against the project's retrieval and scale requirements before settling on one.",
+  },
+  {
+    title: "Multi-Modal AI Integration",
+    detail: "Building Atlas meant combining a real-time voice-based mock interview engine with a RAG-based conversational chatbot into a single, cohesive user experience.",
+  },
+  {
+    title: "Enterprise AI Security",
+    detail: "Implementing Attribute-Based Access Control (ABAC) and PII redaction so the LLM only surfaces information the requesting employee is authorized to see.",
   }
 ];

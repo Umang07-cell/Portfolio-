@@ -35,7 +35,7 @@ export default function FooterV2() {
             className="footer-v2__text-line"
             initial={reduceMotion ? undefined : { opacity: 0, y: 20 }}
             whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: true, margin: "0px 0px -25% 0px" }}
             transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             Looks like you overflowed my tech stack...
@@ -45,7 +45,7 @@ export default function FooterV2() {
             className="footer-v2__text-line"
             initial={reduceMotion ? undefined : { opacity: 0, y: 20 }}
             whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: true, margin: "0px 0px -25% 0px" }}
             transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             Okay that was lame, but feel free to say hi.
@@ -57,7 +57,7 @@ export default function FooterV2() {
           className="footer-v2__ctas"
           initial={reduceMotion ? undefined : { opacity: 0, y: 20 }}
           whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, margin: "0px 0px -25% 0px" }}
           transition={{ duration: 0.5, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           {/* Profile Photo */}

@@ -39,7 +39,7 @@ export default function Intro() {
             className="intro__availability"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "0px 0px -35% 0px" }}
+            viewport={{ once: true, margin: "0px 0px -25% 0px" }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="intro__avail-dot" />
@@ -54,7 +54,7 @@ export default function Intro() {
             className="intro__keyword-tags"
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "0px 0px -35% 0px" }}
+            viewport={{ once: true, margin: "0px 0px -25% 0px" }}
             transition={{ duration: 0.5, delay: 0.35, ease: "easeOut" }}
           >
             {["AI Engineering", "Data Science", "ML Systems", "Python"].map((tag) => (
@@ -72,7 +72,7 @@ export default function Intro() {
                 className="intro__stat"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "0px 0px -35% 0px" }}
+                viewport={{ once: true, margin: "0px 0px -25% 0px" }}
                 transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
               >
                 <span className="intro__stat-value mono">{stat.value}</span>
@@ -86,7 +86,7 @@ export default function Intro() {
             className="intro__chatbot-placeholder"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "0px 0px -20% 0px" }}
+            viewport={{ once: true, margin: "0px 0px -25% 0px" }}
             transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
             style={{ display: 'flex', justifyContent: 'center', width: '100%', marginTop: '32px' }}
           >

@@ -16,7 +16,7 @@ export default function FinSight() {
           className="finsight-card"
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
+          viewport={{ once: true, margin: "0px 0px -25% 0px" }}
           transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           <div className="finsight-card__header">
@@ -69,7 +69,7 @@ export default function FinSight() {
                   className="feature-tile"
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.4 }}
+                  viewport={{ once: true, margin: "0px 0px -25% 0px" }}
                   transition={{ duration: 0.4, delay: i * 0.08, ease: "easeOut" }}
                 >
                   <Icon size={18} color="var(--accent-primary)" />
