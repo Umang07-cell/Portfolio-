@@ -1,20 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Chatbot.css';
-import { profile } from '../../data/content'; // Assuming this exists, I'll check what's in there or just hardcode if it doesn't
+import { SYSTEM_PROMPT, GROQ_CONFIG } from '../../utils/chatbotPrompt';
 
 const INITIAL_MESSAGES = [
-  { id: 1, text: "Hi there! 👋 I'm Umang's AI assistant.", sender: 'bot' },
-  { id: 2, text: "I can answer questions about his skills, experience, or projects. What would you like to know?", sender: 'bot' },
+  { id: 1, text: "Hi there! 👋 I'm Umang's AI assistant.", sender: 'bot', isInitial: true },
+  { id: 2, text: "I can answer questions about his skills, experience, or projects. What would you like to know?", sender: 'bot', isInitial: true },
 ];
-
-const PREDEFINED_RESPONSES = {
-  skills: "Umang specializes in AI Engineering, Data Science, and Machine Learning Systems. He's highly proficient in Python, PyTorch, and deploying models to production.",
-  experience: "He has experience building live AI systems, processing hundreds of thousands of client records, and has published research in ML.",
-  projects: "Some of his notable work includes AI agents, generative models, and scalable backend systems. Scroll down to check out the Projects section!",
-  contact: "You can reach out to him via email or connect on LinkedIn. Check the contact section at the bottom!",
-  default: "That's an interesting question! While I'm just a simple bot right now, Umang is always open to chatting. Feel free to contact him directly!"
-};
 
 export default function Chatbot() {
   const [messages, setMessages] = useState(INITIAL_MESSAGES);
@@ -33,9 +25,9 @@ export default function Chatbot() {
     }
   }, [messages, isTyping, isOpen]);
 
-  const handleSend = (e) => {
+  const handleSend = async (e) => {
     e?.preventDefault();
-    if (!inputValue.trim()) return;
+    if (!inputValue.trim() || isTyping) return;
 
     const userText = inputValue.trim();
     const newUserMsg = { id: Date.now(), text: userText, sender: 'user' };
@@ -44,24 +36,49 @@ export default function Chatbot() {
     setInputValue('');
     setIsTyping(true);
 
-    // Simulate bot thinking and responding
-    setTimeout(() => {
-      let botResponse = PREDEFINED_RESPONSES.default;
-      const lowerText = userText.toLowerCase();
+    try {
+      const conversationHistory = messages
+        .filter(m => !m.isInitial && (m.sender === 'user' || m.sender === 'bot'))
+        .slice(-8)
+        .map(m => ({ role: m.sender === 'user' ? 'user' : 'assistant', content: m.text }));
       
-      if (lowerText.includes('skill') || lowerText.includes('stack') || lowerText.includes('tech')) {
-        botResponse = PREDEFINED_RESPONSES.skills;
-      } else if (lowerText.includes('experience') || lowerText.includes('work') || lowerText.includes('job')) {
-        botResponse = PREDEFINED_RESPONSES.experience;
-      } else if (lowerText.includes('project') || lowerText.includes('build') || lowerText.includes('made')) {
-        botResponse = PREDEFINED_RESPONSES.projects;
-      } else if (lowerText.includes('contact') || lowerText.includes('email') || lowerText.includes('hire')) {
-        botResponse = PREDEFINED_RESPONSES.contact;
+      conversationHistory.push({ role: 'user', content: userText });
+
+      const response = await fetch(GROQ_CONFIG.url, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${import.meta.env.VITE_GROQ_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: GROQ_CONFIG.model,
+          messages: [
+            { role: 'system', content: SYSTEM_PROMPT },
+            ...conversationHistory
+          ],
+          temperature: GROQ_CONFIG.temperature,
+          max_tokens: GROQ_CONFIG.maxTokens
+        })
+      });
+
+      const data = await response.json();
+      
+      if (data.error) {
+        throw new Error(data.error.message);
       }
 
-      setMessages(prev => [...prev, { id: Date.now() + 1, text: botResponse, sender: 'bot' }]);
+      const botReply = data.choices[0]?.message?.content || "Sorry, I couldn't generate a response.";
+      setMessages(prev => [...prev, { id: Date.now() + 1, text: botReply, sender: 'bot' }]);
+    } catch (error) {
+      console.error('Chat error:', error);
+      setMessages(prev => [...prev, { 
+        id: Date.now() + 1, 
+        text: "I'm having trouble connecting. Please try again.", 
+        sender: 'bot' 
+      }]);
+    } finally {
       setIsTyping(false);
-    }, 1000);
+    }
   };
 
   return (

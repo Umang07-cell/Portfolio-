@@ -1,16 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ReactMarkdown from 'react-markdown';
 import './AiChatInterface.css';
+import { SYSTEM_PROMPT, GROQ_CONFIG } from '../../utils/chatbotPrompt';
 
 const INITIAL_MESSAGES = [
   { 
     id: 1, 
-    text: (
-      <>
-        👋 Hey there!<br/>I'm Umang's AI assistant.<br/><br/>Ask me anything about his skills, projects, experience, or just say hi!
-      </>
-    ), 
-    sender: 'bot' 
+    text: "👋 Hey there!\nI'm Umang's AI assistant.\n\nAsk me anything about his skills, projects, experience, or just say hi!", 
+    sender: 'bot',
+    isInitial: true
   },
 ];
 
@@ -20,14 +19,6 @@ const SUGGESTIONS = [
   "What are his technical skills?",
   "What's his work experience?"
 ];
-
-const PREDEFINED_RESPONSES = {
-  skills: "Umang specializes in AI Engineering, Data Science, and Machine Learning Systems. He's highly proficient in Python, PyTorch, and deploying models to production.",
-  experience: "He has experience building live AI systems, processing hundreds of thousands of client records, and has published research in ML.",
-  projects: "Some of his notable work includes AI agents, generative models, and scalable backend systems like FinSight.",
-  contact: "You can reach out to him via email or connect on LinkedIn. Check the contact section at the bottom!",
-  default: "That's an interesting question! While I'm just a simple bot right now, Umang is always open to chatting. Feel free to contact him directly!"
-};
 
 export default function AiChatInterface() {
   const [messages, setMessages] = useState(INITIAL_MESSAGES);
@@ -50,7 +41,7 @@ export default function AiChatInterface() {
     scrollToBottom();
   }, [messages, isTyping]);
 
-  const handleSend = (textOrEvent) => {
+  const handleSend = async (textOrEvent) => {
     let userText = '';
     
     if (typeof textOrEvent === 'string') {
@@ -60,7 +51,7 @@ export default function AiChatInterface() {
       userText = inputValue;
     }
 
-    if (!userText.trim()) return;
+    if (!userText.trim() || isTyping) return;
 
     setShowSuggestions(false);
     const newUserMsg = { id: Date.now(), text: userText, sender: 'user' };
@@ -69,23 +60,49 @@ export default function AiChatInterface() {
     setInputValue('');
     setIsTyping(true);
 
-    setTimeout(() => {
-      let botResponse = PREDEFINED_RESPONSES.default;
-      const lowerText = userText.toLowerCase();
+    try {
+      const conversationHistory = messages
+        .filter(m => !m.isInitial && (m.sender === 'user' || m.sender === 'bot'))
+        .slice(-8)
+        .map(m => ({ role: m.sender === 'user' ? 'user' : 'assistant', content: m.text }));
       
-      if (lowerText.includes('skill') || lowerText.includes('stack') || lowerText.includes('tech')) {
-        botResponse = PREDEFINED_RESPONSES.skills;
-      } else if (lowerText.includes('experience') || lowerText.includes('work') || lowerText.includes('job')) {
-        botResponse = PREDEFINED_RESPONSES.experience;
-      } else if (lowerText.includes('project') || lowerText.includes('build') || lowerText.includes('made') || lowerText.includes('finsight')) {
-        botResponse = PREDEFINED_RESPONSES.projects;
-      } else if (lowerText.includes('contact') || lowerText.includes('email') || lowerText.includes('hire')) {
-        botResponse = PREDEFINED_RESPONSES.contact;
+      conversationHistory.push({ role: 'user', content: userText });
+
+      const response = await fetch(GROQ_CONFIG.url, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${import.meta.env.VITE_GROQ_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: GROQ_CONFIG.model,
+          messages: [
+            { role: 'system', content: SYSTEM_PROMPT },
+            ...conversationHistory
+          ],
+          temperature: GROQ_CONFIG.temperature,
+          max_tokens: GROQ_CONFIG.maxTokens
+        })
+      });
+
+      const data = await response.json();
+      
+      if (data.error) {
+        throw new Error(data.error.message);
       }
 
-      setMessages(prev => [...prev, { id: Date.now() + 1, text: botResponse, sender: 'bot' }]);
+      const botReply = data.choices[0]?.message?.content || "Sorry, something went wrong.";
+      setMessages(prev => [...prev, { id: Date.now() + 1, text: botReply, sender: 'bot' }]);
+    } catch (error) {
+      console.error('Chat error:', error);
+      setMessages(prev => [...prev, { 
+        id: Date.now() + 1, 
+        text: "I'm having trouble connecting. Please try again.", 
+        sender: 'bot' 
+      }]);
+    } finally {
       setIsTyping(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -117,7 +134,11 @@ export default function AiChatInterface() {
                 className={`ai-message-wrapper ${msg.sender === 'user' ? 'user' : 'bot'}`}
               >
                 <div className="ai-message">
-                  {msg.text}
+                  {msg.sender === 'bot' ? (
+                    <ReactMarkdown>{msg.text}</ReactMarkdown>
+                  ) : (
+                    msg.text
+                  )}
                 </div>
               </motion.div>
             ))}
