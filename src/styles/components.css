@@ -25,12 +25,12 @@
 .hero-v2__bg-image {
   position: absolute;
   inset: 0;
-  background-size: contain; /* Prevents square image from zooming in too much */
-  background-position: center bottom; 
+  background-size: 95%;
+  background-position: center center;
   background-repeat: no-repeat;
   z-index: -2;
   opacity: 1;
-  /* Soft vignette mask: dissolves the image's hard rectangular edges (left/right/top)
+  /* Soft vignette mask: dissolves the image's hard rectangular edges
      into the page background instead of showing a visible photo "frame". */
   -webkit-mask-image: radial-gradient(ellipse 72% 88% at 50% 42%, #000 58%, transparent 100%);
   mask-image: radial-gradient(ellipse 72% 88% at 50% 42%, #000 58%, transparent 100%);

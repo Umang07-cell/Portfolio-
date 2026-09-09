@@ -27,7 +27,7 @@ export default function HeroV2() {
         style={reduceMotion ? {} : { y: bgY }}
         aria-hidden="true"
       >
-        <div className="hero-v2__bg-image" style={{ backgroundImage: "url('/hero-image.jpg')" }} />
+        <div className="hero-v2__bg-image" style={{ backgroundImage: "url('/hero-image.png')" }} />
         <div className="hero-v2__bg-gradient" />
       </motion.div>
 
