@@ -280,7 +280,7 @@
    INTRO
    -------------------------------------------------------------------------- */
 .intro {
-  padding-top: 0;
+  padding-top: var(--space-24);
   padding-bottom: var(--space-16);
 }
 
@@ -1114,43 +1114,68 @@
    TECH STACK — was built (TechStack.jsx exists) but had zero CSS, since it
    was never wired into App.jsx when the V2 redesign happened.
    -------------------------------------------------------------------------- */
-.tech-groups {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-6);
-  margin-top: var(--space-10);
+/* ── Tech Stack V2 — clean row-based layout ── */
+.tech-stack-v2 {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--space-12);
 }
 
-.tech-group {
-  padding: var(--space-6);
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  transition: border-color 0.2s var(--ease-out-quart);
+.tech-stack-v2__row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-8);
+  padding: var(--space-6) 0;
+  border-top: 1px solid var(--border-subtle);
+  transition: border-color 0.3s var(--ease-out-quart);
 }
 
-.tech-group:hover {
-  border-color: var(--border-active);
+.tech-stack-v2__row:last-child {
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-.tech-group__label {
-  display: block;
+.tech-stack-v2__row:hover {
+  border-top-color: var(--accent-primary);
+}
+
+.tech-stack-v2__label-col {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  flex-shrink: 0;
+  min-width: 260px;
+  padding-top: var(--space-1);
+}
+
+.tech-stack-v2__index {
+  font-size: var(--text-xs);
+  color: var(--accent-primary);
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+.tech-stack-v2__label {
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  color: var(--accent-primary);
-  margin-bottom: var(--space-4);
+  color: var(--text-secondary);
 }
 
-.tech-group__tags {
+.tech-stack-v2__tags-col {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
+  flex: 1;
 }
 
 @media (max-width: 768px) {
-  .tech-groups {
-    grid-template-columns: 1fr;
+  .tech-stack-v2__row {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .tech-stack-v2__label-col {
+    min-width: unset;
   }
 }
 

@@ -5,7 +5,7 @@ import { useStaggerInView, defaultTransition } from "../hooks/useScrollReveal";
 import { techGroups } from "../data/content";
 
 export default function TechStack() {
-  const { ref, inView, containerVariants, itemVariants } = useStaggerInView(0.1);
+  const { ref, inView, containerVariants, itemVariants } = useStaggerInView(0.08);
 
   return (
     <section id="stack" className="scroll-section scroll-section--animated">
@@ -14,20 +14,23 @@ export default function TechStack() {
         <ScrollScaleTitle lines={["What I", "reach for."]} align="left" />
         <motion.div
           ref={ref}
-          className="tech-groups"
+          className="tech-stack-v2"
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          {techGroups.map((group) => (
+          {techGroups.map((group, groupIndex) => (
             <motion.div
-              className="tech-group"
+              className="tech-stack-v2__row"
               key={group.label}
               variants={itemVariants}
               transition={defaultTransition}
             >
-              <span className="tech-group__label mono">{group.label}</span>
-              <div className="tech-group__tags">
+              <div className="tech-stack-v2__label-col">
+                <span className="tech-stack-v2__index mono">0{groupIndex + 1}</span>
+                <span className="tech-stack-v2__label mono">{group.label}</span>
+              </div>
+              <div className="tech-stack-v2__tags-col">
                 {group.items.map((item) => (
                   <TechTag key={item}>{item}</TechTag>
                 ))}

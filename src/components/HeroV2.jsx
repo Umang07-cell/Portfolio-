@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import ScrambleText from "./ui/ScrambleText";
 
 export default function HeroV2() {
   const reduceMotion = useReducedMotion();
@@ -45,11 +46,14 @@ export default function HeroV2() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             >
-              I turn <span className="text-accent">data</span> <br/>
-              <span className="text-accent">chaos</span> into <br/>
-              intelligent <br/>
-              solutions.
-              <span className="text-accent hero-v2__dollar"><br/>$$$</span>
+              I engineer <br/>
+              <span className="text-accent">
+                <ScrambleText text="AI systems" delay={300} speed={80} scrambleTicks={12} />
+              </span> <br/>
+              that actually <br/>
+              <span className="text-accent">
+                <ScrambleText text="ship." delay={800} speed={80} scrambleTicks={12} />
+              </span>
             </motion.h1>
           </div>
 
@@ -61,7 +65,11 @@ export default function HeroV2() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             >
-              I'm Voyager <span className="text-accent"><br/>Umang<br/>Pawar</span>
+              I'm Catalyst
+              <span className="text-accent">
+                <br/><ScrambleText text="Umang" delay={500} speed={80} scrambleTicks={12} />
+                <br/><ScrambleText text="Pawar" delay={1000} speed={80} scrambleTicks={12} />
+              </span>
             </motion.h1>
           </div>
           
