@@ -5,7 +5,7 @@ import AiChatInterface from "./ui/AiChatInterface";
 import { profile } from "../data/content";
 
 const STATS = [
-  { value: "3", label: "Live AI systems in production" },
+  { value: "2", label: "Live AI systems in production" },
   { value: "100+", label: "Employees using what I've shipped" },
   { value: "637K+", label: "Client records processed" },
   { value: "IJRASET", label: "Published ML researcher" },
