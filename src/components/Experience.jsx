@@ -16,6 +16,8 @@ export default function Experience() {
   });
   
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const cursorTop = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const cursorScale = useTransform(scrollYProgress, [0, 0.04, 0.96, 1], [0, 1, 1, 0.7]);
 
   return (
     <section id="experience" className="scroll-section scroll-section--animated" ref={containerRef}>
@@ -24,9 +26,27 @@ export default function Experience() {
         <ScrollScaleTitle lines={["Where I've", "shipped code."]} align="left" />
 
         <div className="timeline">
+          <div className="timeline__line" aria-hidden="true" />
           <motion.div
-            className="timeline__line"
+            className="timeline__line timeline__line--progress"
+            aria-hidden="true"
             style={{ scaleY, transformOrigin: "top" }}
+          />
+          <motion.span
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              left: "1px",
+              top: cursorTop,
+              width: "14px",
+              height: "14px",
+              borderRadius: "50%",
+              background: "var(--accent-primary)",
+              border: "3px solid var(--bg-primary)",
+              boxShadow: "0 0 0 1px var(--accent-primary), 0 0 18px rgba(65, 91, 210, 0.75)",
+              scale: cursorScale,
+              zIndex: 2,
+            }}
           />
           {experience.map((node, i) => (
             <ExperienceNode key={node.role} node={node} index={i} />
