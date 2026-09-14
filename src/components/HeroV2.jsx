@@ -48,11 +48,11 @@ export default function HeroV2() {
             >
               I engineer <br/>
               <span className="text-accent">
-                <ScrambleText text="AI systems" delay={300} speed={100} scrambleTicks={40} />
+                <ScrambleText text="AI systems" delay={300} speed={100} scrambleTicks={30} />
               </span> <br/>
               that actually <br/>
               <span className="text-accent">
-                <ScrambleText text="ship." delay={800} speed={100} scrambleTicks={40} />
+                <ScrambleText text="ship." delay={800} speed={100} scrambleTicks={30} />
               </span>
             </motion.h1>
           </div>
@@ -67,8 +67,8 @@ export default function HeroV2() {
             >
               I'm Catalyst
               <span className="text-accent">
-                <br/><ScrambleText text="Umang" delay={500} speed={100} scrambleTicks={40} />
-                <br/><ScrambleText text="Pawar" delay={1000} speed={100} scrambleTicks={40} />
+                <br/><ScrambleText text="Umang" delay={500} speed={100} scrambleTicks={30} />
+                <br/><ScrambleText text="Pawar" delay={1000} speed={100} scrambleTicks={30} />
               </span>
             </motion.h1>
           </div>
