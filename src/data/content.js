@@ -6,6 +6,7 @@ export const profile = {
   name: "Umang Pawar",
   role: "AI Engineer",
   location: "Nagpur, India",
+  phone: "+91 8055070449",
   email: "umangpawar629@gmail.com",
   github: "https://github.com/Umang07-cell",
   githubLabel: "github.com/Umang07-cell",
@@ -23,9 +24,9 @@ export const heroCopy = {
 export const aboutCopy = {
   heading: "Building AI that works in the real world.",
   paragraphs: [
-    "I'm a CS graduate from Nagpur who spent the last year building AI systems that actually get used — not just submitted. My work at LanceSoft has gone from engineering brief to company-wide adoption: an HR chatbot that 100+ employees rely on daily, and a lead generation engine running live B2B outreach.",
+    "I'm a CS graduate from Nagpur who builds production AI systems that actually get used — not just submitted. My work at LanceSoft went from engineering brief to company-wide adoption: an HR chatbot that 100+ employees rely on, and a lead generation engine running live B2B outreach.",
     "I think in pipelines: document ingestion, chunking, embeddings, retrieval, grounding. I care about what happens when an LLM answer is wrong and how the system recovers. I'm a published ML researcher, a Google AI Professional Certificate holder, and someone who debugs production issues on Railway at odd hours because the system needs to work.",
-    "Currently at LanceSoft as an AI Engineer Intern. Targeting AI Engineer roles in Pune, Bangalore, or Hyderabad.",
+    "Most recently an AI Engineer Intern at LanceSoft. Targeting AI Engineer roles in Pune, Bangalore, or Hyderabad.",
   ],
 };
 
@@ -96,9 +97,9 @@ export const otherProjects = [
       { value: "100+", label: "Employees" },
       { value: "6+", label: "HR Modules" },
     ],
-    stack: ["FastAPI", "LangChain", "ChromaDB", "Groq", "ABAC", "React"],
+    stack: ["FastAPI", "LangChain", "Qdrant", "Groq", "ABAC", "React"],
     detail:
-      "End-to-end RAG pipeline: document ingestion → HuggingFace embeddings → ChromaDB retrieval → grounded Llama 3 answers with PII redaction, gated by attribute-based access control.",
+      "ABAC-secured HR assistant built with RAG, LangChain, Qdrant, and Groq (Llama 3). Deployed to 100+ employees, then packaged into a client-facing knowledge-bot product with grounded answers and PII redaction.",
     features: [
       { icon: "🔒", title: "ABAC Access Control", detail: "Permission-gated by role" },
       { icon: "🕵️", title: "PII Redaction", detail: "Automatic on every answer" },
@@ -115,7 +116,7 @@ export const otherProjects = [
     subtitle: "AI-Powered B2B Outreach System",
     stack: ["Python", "FastAPI", "BeautifulSoup", "Selenium", "LLM Enrichment", "PostgreSQL"],
     detail:
-      "Automated pipeline identifying HR and decision-maker contacts at target companies — now powering LanceSoft's live B2B outreach.",
+      "Production pipeline for query and JD processing, contact retrieval, pgvector-based candidate matching and scoring, and staged routing — now powering LanceSoft's live B2B outreach.",
     features: [
       { icon: "🕸️", title: "Automated Scraping", detail: "BeautifulSoup + Selenium" },
       { icon: "🧠", title: "LLM Enrichment", detail: "Structured contact profiling" },
@@ -130,13 +131,13 @@ export const otherProjects = [
     labelVariant: "accent",
     title: "Atlas-AI",
     subtitle: "AI Career Platform — 4 Integrated Systems",
-    stack: ["FastAPI", "React", "Groq", "LangChain", "HuggingFace", "RAG"],
+    stack: ["FastAPI", "React", "Groq", "LangChain", "HuggingFace", "RAG", "JSearch"],
     detail:
-      "Job scraper + ATS resume scorer + voice mock interview engine + RAG career chatbot — unified into one product.",
+      "JSearch-powered daily job scraper, ATS resume scorer, LLM voice mock interview engine with dynamic follow-ups, and RAG career chatbot — unified into one deployed product.",
     features: [
       { icon: "🔎", title: "Daily Job Scraper", detail: "Live listings, refreshed daily" },
       { icon: "📝", title: "ATS Resume Scorer", detail: "Scored against target JDs" },
-      { icon: "🎙️", title: "Voice Mock Interviews", detail: "Dynamic follow-up questions" },
+      { icon: "🎙️", title: "Voice Mock Interviews", detail: "Dynamic follow-ups, 1–2s response time" },
       { icon: "💬", title: "RAG Career Chatbot", detail: "Grounded career guidance" },
     ],
     links: { github: null, live: "https://atlas-frontend-uo1y.onrender.com/dashboard" }, // data-todo: Add Atlas-AI GitHub link if public
@@ -149,11 +150,11 @@ export const otherProjects = [
     subtitle: "Customer Support Agent",
     stack: ["Python", "Groq (Llama 3.3 70B)", "Prompt Engineering"],
     detail:
-      "FAQ answering, lead qualification, escalation detection, and conversation summarization in a single CLI workflow.",
+      "Four-stage LLM workflow using Groq and Llama 3.3: SOP-grounded FAQ answering, structured lead qualification, two-layer escalation detection, and end-of-session summarization.",
     features: [
       { icon: "❓", title: "FAQ Answering", detail: "SOP-grounded, RAG-style" },
       { icon: "🎯", title: "Lead Qualification", detail: "Structured intake flow" },
-      { icon: "🚨", title: "Escalation Detection", detail: "Keyword + regex dual-layer" },
+      { icon: "🚨", title: "Escalation Detection", detail: "Keyword pre-check + model tags" },
       { icon: "📋", title: "Auto-Summarization", detail: "Every conversation logged" },
     ],
     links: { github: "https://github.com/Umang07-cell/closira-AI-project" },
@@ -296,14 +297,15 @@ export const experience = [
   {
     role: "AI Engineer Intern",
     company: "LanceSoft",
-    date: "Jul 2026 – Present",
-    badge: "CURRENT",
+    date: "Jul 2026 – Sep 2026",
+    badge: "RECENT",
     points: [
-      "Policy module: document upload, version/supersede workflows, 100+ employees",
-      "AI Lead Generation Engine: live B2B outreach backbone",
-      "End-to-end ownership: requirements → deployment",
+      "Architected HR-PolicyIQ, an ABAC-secured RAG chatbot using LangChain, Qdrant, and Groq; deployed to 100+ employees and later packaged for an external client",
+      "Cut chatbot response latency from 5–6s to 1–1.5s through embedding caching and retrieval optimization; reduced hallucinations with confidence-scored reranking",
+      "Designed and shipped the Lead Generation Engine pipeline for query/JD processing, pgvector candidate matching, scoring, and live B2B outreach",
+      "Owned the Policy module end to end: document upload, metadata, in-app viewing, versioning, and supersede workflows",
     ],
-    stack: ["FastAPI", "LangChain", "Groq", "ChromaDB", "PostgreSQL"],
+    stack: ["FastAPI", "LangChain", "Groq", "Qdrant", "PostgreSQL", "Redis"],
   },
 ];
 
@@ -350,11 +352,11 @@ export const journey = [
   },
   {
     year: "2026",
-    text: "Joined LanceSoft as an AI Engineer Intern, owning the Policy module for HR-PolicyIQ — now used by 100+ employees daily.",
+    text: "Joined LanceSoft as an AI Engineer Intern, owning HR-PolicyIQ and its Policy module — deployed to 100+ employees and later packaged for an external client.",
   },
   {
     year: "2026",
-    text: "Shipped an AI-powered Lead Generation Engine at LanceSoft, now the backbone of live B2B outreach.",
+    text: "Shipped an AI-powered Lead Generation Engine at LanceSoft, now the backbone of live B2B outreach with candidate matching, scoring, and staged routing.",
   },
   {
     year: "2026",
