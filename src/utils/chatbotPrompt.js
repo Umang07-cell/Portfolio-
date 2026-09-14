@@ -19,7 +19,7 @@ GitHub: https://github.com/Umang07-cell
 LinkedIn: https://www.linkedin.com/in/umang-pawar-208157314
 
 === ABOUT ===
-CS graduate from Nagpur. Building AI that works in the real world. Production AI systems at LanceSoft used by 100+ employees daily. Published ML researcher (IJRASET). Google AI Professional Certificate holder. Targeting AI Engineer roles in Pune/Bangalore/Hyderabad.
+CS graduate from Nagpur. Building AI that works in the real world. Production AI systems at LanceSoft used by 100+ employees daily. Published ML researcher (IJRASET). Google AI Professional Certificate holder. Most recently an AI Engineer Intern at LanceSoft, targeting AI Engineer roles in Pune/Bangalore/Hyderabad.
 
 === TECHNICAL SKILLS ===
 AI & GenAI: LangChain, RAG, Groq, OpenAI, ChromaDB, FAISS, HuggingFace, Prompt Engineering, Multi-Agent Systems, MLOps
@@ -28,10 +28,11 @@ Frontend: React.js, Vite, Tailwind CSS, TypeScript, JavaScript, Framer Motion
 DevOps: Python, Git, GitHub Actions, Docker, Railway, Render, AWS, Azure
 
 === EXPERIENCE ===
-1. AI Engineer Intern @ LanceSoft (Jul 2026 – Present)
-   - Built HR-PolicyIQ: ABAC-secured HR chatbot, 100+ daily users, RAG + PII redaction
-   - Lead Generation Engine: automated B2B outreach with LLM enrichment
-   - Stack: FastAPI, LangChain, Groq, ChromaDB, PostgreSQL
+1. AI Engineer Intern @ LanceSoft (Jul 2026 – Sep 2026)
+   - Built HR-PolicyIQ: ABAC-secured RAG chatbot using LangChain, Qdrant, and Groq; deployed to 100+ employees and packaged for an external client
+   - Cut response latency from 5–6s to 1–1.5s through embedding caching and retrieval optimization
+   - Designed the Lead Generation Engine with query/JD processing, pgvector matching, scoring, and staged routing for live B2B outreach
+   - Stack: FastAPI, LangChain, Groq, Qdrant, PostgreSQL, Redis
 
 2. Data Analyst Intern @ CarrierDomain (Mar–Jun 2026)
    - ETL pipelines for 637K+ live client records, stakeholder dashboard
