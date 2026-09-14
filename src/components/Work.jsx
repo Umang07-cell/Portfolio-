@@ -13,7 +13,7 @@ import { experience, otherProjects, profile } from "../data/content";
  * of sync with those sections.
  */
 export default function Work() {
-  const current = experience.find((e) => e.badge === "CURRENT") || experience[0];
+  const current = experience.find((e) => e.badge === "RECENT") || experience[0];
   const shipped = otherProjects.filter((p) => p.label?.includes("LANCESOFT"));
 
   return (
