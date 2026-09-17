@@ -1917,9 +1917,11 @@
     align-items: flex-start !important;
   }
 
-  /* Hide the empty left slot — all cards shown in right slot */
+  /* visibility:hidden (NOT display:none) keeps the 0px grid cell alive so
+     the road column stays in position 2 and cards stay in position 3 */
   .timeline-left-slot {
-    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
 
   /* Cards fill the right column */
