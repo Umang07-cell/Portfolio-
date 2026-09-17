@@ -1864,39 +1864,13 @@
 }
 
 @media (max-width: 900px) {
-  .challenges-section {
-    height: auto !important; /* Disables the 400vh for native horizontal scroll */
-    padding: var(--space-16) 0;
-  }
-
-  .challenges-sticky-container {
-    position: relative;
-    height: auto;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none; /* Firefox */
-  }
-  
-  .challenges-sticky-container::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
-  }
-
   .challenges-ambient-glow {
     display: none;
   }
 
-  .challenges-track {
-    flex-direction: row;
-    align-items: center;
-    gap: var(--space-12);
-    padding: 0 var(--gutter);
-    width: max-content;
-    transform: none !important; /* Disable Framer Motion translate on mobile */
-  }
-
+  /* Just make sure the items fit on screen, let Framer Motion handle the horizontal scroll */
   .challenges-header-area {
     width: 80vw;
-    scroll-snap-align: center;
   }
 
   .challenges-subheading {
@@ -1907,7 +1881,6 @@
     width: 85vw;
     max-width: 400px;
     transform: none !important; /* Overrides the Y offsets */
-    scroll-snap-align: center;
   }
 
   /* --------------------------------------------------------------------------
@@ -1936,8 +1909,8 @@
   /* Marker dot: place it on the right edge of the road column so it doesn't block the car */
   .timeline-marker-container {
     transform: none !important;
-    justify-self: end;
-    margin-right: -4px;
+    justify-self: end !important;
+    margin-right: -8px;
   }
 
   /* Hide the side connector line — not needed in single-column layout */
