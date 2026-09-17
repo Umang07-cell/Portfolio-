@@ -1865,14 +1865,20 @@
 
 @media (max-width: 900px) {
   .challenges-section {
-    height: auto !important;
+    height: auto !important; /* Disables the 400vh for native horizontal scroll */
     padding: var(--space-16) 0;
   }
 
   .challenges-sticky-container {
     position: relative;
     height: auto;
-    overflow: visible;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .challenges-sticky-container::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
   }
 
   .challenges-ambient-glow {
@@ -1880,36 +1886,33 @@
   }
 
   .challenges-track {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     gap: var(--space-12);
     padding: 0 var(--gutter);
-    width: 100%;
-    transform: none !important;
+    width: max-content;
+    transform: none !important; /* Disable Framer Motion translate on mobile */
   }
 
   .challenges-header-area {
-    width: 100%;
-    align-items: center;
-    text-align: center;
+    width: 80vw;
+    scroll-snap-align: center;
   }
 
   .challenges-subheading {
-    margin: 1rem auto 0;
+    margin-top: 1rem;
   }
 
   .challenge-card-container {
-    width: 100%;
-    max-width: 500px;
-    transform: none !important; /* Overrides the inline style Y offset on mobile */
-    margin: 0 auto;
+    width: 85vw;
+    max-width: 400px;
+    transform: none !important; /* Overrides the Y offsets */
+    scroll-snap-align: center;
   }
-}
 
-/* --------------------------------------------------------------------------
-   TIMELINE V2 MOBILE OVERRIDES
-   -------------------------------------------------------------------------- */
-@media (max-width: 900px) {
+  /* --------------------------------------------------------------------------
+     TIMELINE V2 MOBILE OVERRIDES
+     -------------------------------------------------------------------------- */
   /* Road is on the left (60px), cards take the rest */
   .timeline-v2-milestone {
     grid-template-columns: 0 60px 1fr !important;
@@ -1930,10 +1933,11 @@
     width: 100%;
   }
 
-  /* Marker dot: reset the JS-calculated translateX so it centers on the 60px road strip */
+  /* Marker dot: place it on the right edge of the road column so it doesn't block the car */
   .timeline-marker-container {
     transform: none !important;
-    justify-self: center;
+    justify-self: end;
+    margin-right: -4px;
   }
 
   /* Hide the side connector line — not needed in single-column layout */
