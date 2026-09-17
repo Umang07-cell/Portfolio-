@@ -67,8 +67,8 @@ export default function HeroV2() {
             >
               I'm Catalyst
               <span className="text-accent">
-                <br className="desktop-br"/><ScrambleText text="Umang" delay={500} speed={45} scrambleTicks={95} />
-                <br className="desktop-br"/><ScrambleText text="Pawar" delay={1000} speed={45} scrambleTicks={95} />
+                <br /><ScrambleText text="Umang" delay={500} speed={45} scrambleTicks={95} />
+                <br /><ScrambleText text="Pawar" delay={1000} speed={45} scrambleTicks={95} />
               </span>
             </motion.h1>
           </div>

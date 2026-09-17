@@ -716,11 +716,11 @@ export default function TimelineV2() {
                     gap: "clamp(1rem, 2vw, 2rem)"
                   }}
                 >
-                  {/* Left slot */}
+                  {/* Left slot — hidden on mobile; cards move to right slot */}
                   <div className="timeline-left-slot" style={{ display: "flex", justifyContent: "flex-end" }}>
-                    {isLeft && (
+                    {isLeft && !isMobile && (
                       <motion.div
-                        initial={{ opacity: 0, x: isMobile ? 0 : -40, y: 18, scale: 0.97, filter: "blur(6px)" }}
+                        initial={{ opacity: 0, x: -40, y: 18, scale: 0.97, filter: "blur(6px)" }}
                         whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)" }}
                         viewport={{ once: false, margin: "0px 0px -15% 0px" }}
                         transition={{ duration: 0.62, ease: [0.16, 1, 0.3, 1] }}
@@ -733,9 +733,9 @@ export default function TimelineV2() {
                   {/* Center dot */}
                   <TimelineMarker className="timeline-marker-container" progress={storyProgress} index={i} total={milestones.length} isLeft={isLeft} sampler={sampler} />
 
-                  {/* Right slot */}
+                  {/* Right slot — always shows card on mobile */}
                   <div className="timeline-right-slot" style={{ display: "flex", justifyContent: "flex-start" }}>
-                    {!isLeft && (
+                    {(!isLeft || isMobile) && (
                       <motion.div
                         initial={{ opacity: 0, x: isMobile ? 0 : 40, y: 18, scale: 0.97, filter: "blur(6px)" }}
                         whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)" }}

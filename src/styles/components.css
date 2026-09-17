@@ -1848,9 +1848,20 @@
    TIMELINE V2 MOBILE OVERRIDES
    -------------------------------------------------------------------------- */
 @media (max-width: 900px) {
-  /* Keep road + car — just shrink the center column so cards have room */
+  /* Collapse left slot → 0, road column → 60px, cards → remaining width */
   .timeline-v2-milestone {
-    grid-template-columns: minmax(0, 1fr) 60px minmax(0, 1fr) !important;
-    gap: clamp(0.25rem, 1vw, 0.75rem) !important;
+    grid-template-columns: 0 60px 1fr !important;
+    gap: 0.5rem !important;
+  }
+
+  /* Hide the empty left slot entirely so it takes no space */
+  .timeline-left-slot {
+    display: none !important;
+  }
+
+  /* Make cards fill full width in the right column */
+  .timeline-right-slot {
+    justify-content: flex-start !important;
+    width: 100%;
   }
 }
