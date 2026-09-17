@@ -644,12 +644,12 @@ export default function TimelineV2() {
             preserveAspectRatio="none"
             style={{
               position: "absolute",
-              left: "50%",
+              left: isMobile ? "0px" : "50%",
               top: 0,
               bottom: 0,
-              width: "160px",
+              width: isMobile ? "60px" : "160px",
               height: "100%",
-              transform: "translateX(-50%)",
+              transform: isMobile ? "none" : "translateX(-50%)",
               overflow: "visible",
               pointerEvents: "none",
             }}
@@ -684,11 +684,11 @@ export default function TimelineV2() {
             transition={{ duration: 0.2, ease: "easeOut" }}
             style={{
               position: "absolute",
-              left: "50%",
+              left: isMobile ? "30px" : "50%",
               top: reduceMotion ? "100%" : carY,
               marginLeft: "-14px",
               marginTop: "-21px",
-              x: reduceMotion ? 0 : carX,
+              x: (reduceMotion || isMobile) ? 0 : carX,
               width: "28px",
               height: "42px",
               display: "grid",

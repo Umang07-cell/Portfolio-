@@ -38,7 +38,7 @@ export default function HeroV2() {
       >
         <div className="hero-v2__split-content">
           
-          {/* Left Text */}
+          {/* Left Text — shows at TOP on mobile */}
           <div className="hero-v2__left">
             <motion.h1 
               className="hero-v2__headline hero-v2__headline--left"
@@ -57,7 +57,14 @@ export default function HeroV2() {
             </motion.h1>
           </div>
 
-          {/* Right Text */}
+          {/* Mobile-only photo — sits between the two text blocks */}
+          <div 
+            className="hero-v2__mobile-photo"
+            style={{ backgroundImage: "url('/hero-image.png')" }}
+            aria-hidden="true"
+          />
+
+          {/* Right Text — shows at BOTTOM on mobile */}
           <div className="hero-v2__right">
             <motion.h1 
               className="hero-v2__headline hero-v2__headline--right"
