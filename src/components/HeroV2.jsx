@@ -46,13 +46,13 @@ export default function HeroV2() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             >
-              I engineer <br/>
+              I engineer <br className="desktop-br"/>
               <span className="text-accent">
-                <ScrambleText text="AI systems" delay={300} speed={100} scrambleTicks={30} />
-              </span> <br/>
-              that actually <br/>
+                <ScrambleText text="AI systems" delay={300} speed={45} scrambleTicks={90} />
+              </span> <br className="desktop-br"/>
+              that actually <br className="desktop-br"/>
               <span className="text-accent">
-                <ScrambleText text="ship." delay={800} speed={100} scrambleTicks={30} />
+                <ScrambleText text="ship." delay={800} speed={45} scrambleTicks={95} />
               </span>
             </motion.h1>
           </div>
@@ -67,8 +67,8 @@ export default function HeroV2() {
             >
               I'm Catalyst
               <span className="text-accent">
-                <br/><ScrambleText text="Umang" delay={500} speed={100} scrambleTicks={30} />
-                <br/><ScrambleText text="Pawar" delay={1000} speed={100} scrambleTicks={30} />
+                <br className="desktop-br"/><ScrambleText text="Umang" delay={500} speed={45} scrambleTicks={95} />
+                <br className="desktop-br"/><ScrambleText text="Pawar" delay={1000} speed={45} scrambleTicks={95} />
               </span>
             </motion.h1>
           </div>

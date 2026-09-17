@@ -466,7 +466,7 @@ function CinematicHeading() {
   );
 }
 
-function TimelineMarker({ progress, index, total, isLeft, sampler }) {
+function TimelineMarker({ progress, index, total, isLeft, sampler, className }) {
   const stop = total > 1 ? index / (total - 1) : 0;
   
   // Keep the subtle arrival glow behind the dot when the car is passing
@@ -484,7 +484,7 @@ function TimelineMarker({ progress, index, total, isLeft, sampler }) {
     : `calc(120px - ${markerX}px + clamp(1rem, 2vw, 2rem))`;
 
   return (
-    <div style={{
+    <div className={className} style={{
       position: "relative",
       display: "flex",
       alignItems: "center",
@@ -493,7 +493,7 @@ function TimelineMarker({ progress, index, total, isLeft, sampler }) {
       zIndex: 2,
     }}>
       {/* Subtle connector line linking to the card */}
-      <div style={{
+      <div className="timeline-marker-line" style={{
         position: "absolute",
         top: "50%",
         [isLeft ? "right" : "left"]: "50%",
@@ -628,8 +628,12 @@ export default function TimelineV2() {
 
         {/* Timeline Track */}
         <div ref={timelineRef} style={{ position: "relative" }}>
+          {/* Mobile Straight Line */}
+          <div className="timeline-mobile-line" />
+          
           {/* A gently winding road anchors the story; the car, not a progress line, tracks the scroll. */}
           <svg
+            className="timeline-road-svg"
             aria-hidden="true"
             viewBox="0 0 160 1000"
             preserveAspectRatio="none"
@@ -669,6 +673,7 @@ export default function TimelineV2() {
             />
           </svg>
           <motion.div
+            className="timeline-car-wrapper"
             aria-label="Journey progress"
             animate={{ rotate: isReversing ? 0 : 180 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
@@ -698,6 +703,7 @@ export default function TimelineV2() {
               return (
                 <motion.div
                   key={i}
+                  className="timeline-v2-milestone"
                   style={{
                     display: "grid",
                     gridTemplateColumns: "minmax(0, 1fr) 240px minmax(0, 1fr)",
@@ -706,7 +712,7 @@ export default function TimelineV2() {
                   }}
                 >
                   {/* Left slot */}
-                  <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                  <div className="timeline-left-slot" style={{ display: "flex", justifyContent: "flex-end" }}>
                     {isLeft && (
                       <motion.div
                         initial={{ opacity: 0, x: -40, y: 18, scale: 0.97, filter: "blur(6px)" }}
@@ -720,10 +726,10 @@ export default function TimelineV2() {
                   </div>
 
                   {/* Center dot */}
-                  <TimelineMarker progress={storyProgress} index={i} total={milestones.length} isLeft={isLeft} sampler={sampler} />
+                  <TimelineMarker className="timeline-marker-container" progress={storyProgress} index={i} total={milestones.length} isLeft={isLeft} sampler={sampler} />
 
                   {/* Right slot */}
-                  <div style={{ display: "flex", justifyContent: "flex-start" }}>
+                  <div className="timeline-right-slot" style={{ display: "flex", justifyContent: "flex-start" }}>
                     {!isLeft && (
                       <motion.div
                         initial={{ opacity: 0, x: 40, y: 18, scale: 0.97, filter: "blur(6px)" }}

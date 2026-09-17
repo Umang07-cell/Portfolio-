@@ -120,6 +120,10 @@
 }
 
 @media (max-width: 900px) {
+  .desktop-br {
+    display: none;
+  }
+
   .hero-v2__split-content {
     flex-direction: column;
     padding-top: 0;
@@ -1837,5 +1841,52 @@
     max-width: 500px;
     transform: none !important; /* Overrides the inline style Y offset on mobile */
     margin: 0 auto;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   TIMELINE V2 MOBILE OVERRIDES
+   -------------------------------------------------------------------------- */
+.timeline-mobile-line {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .timeline-road-svg, .timeline-car-wrapper {
+    display: none !important;
+  }
+
+  .timeline-mobile-line {
+    display: block;
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border-subtle);
+  }
+
+  .timeline-v2-milestone {
+    display: flex !important;
+    flex-direction: column !important;
+    padding-left: 50px;
+    position: relative;
+    gap: 0 !important;
+  }
+
+  .timeline-left-slot, .timeline-right-slot {
+    justify-content: flex-start !important;
+    width: 100%;
+  }
+
+  .timeline-marker-container {
+    position: absolute !important;
+    left: 21px !important;
+    transform: translateX(-50%) !important; /* Center on the straight line */
+    top: 24px; /* Align with the top of the card */
+  }
+
+  .timeline-marker-line {
+    display: none !important;
   }
 }
