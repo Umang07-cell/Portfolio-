@@ -568,10 +568,18 @@ export default function TimelineV2() {
   const reduceMotion = useReducedMotion();
   const [isReversing, setIsReversing] = useState(false);
   const [isDriving, setIsDriving] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== "undefined" && window.innerWidth <= 900);
   const lastScrollProgress = useRef(0);
   const reverseState = useRef(false);
   const driveTimer = useRef(null);
   const timelineRef = useRef(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 900px)");
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
   
   const sampler = useSvgPathSampler(CURVED_ROUTE);
 
@@ -628,9 +636,6 @@ export default function TimelineV2() {
 
         {/* Timeline Track */}
         <div ref={timelineRef} style={{ position: "relative" }}>
-          {/* Mobile Straight Line */}
-          <div className="timeline-mobile-line" />
-          
           {/* A gently winding road anchors the story; the car, not a progress line, tracks the scroll. */}
           <svg
             className="timeline-road-svg"
@@ -715,7 +720,7 @@ export default function TimelineV2() {
                   <div className="timeline-left-slot" style={{ display: "flex", justifyContent: "flex-end" }}>
                     {isLeft && (
                       <motion.div
-                        initial={{ opacity: 0, x: -40, y: 18, scale: 0.97, filter: "blur(6px)" }}
+                        initial={{ opacity: 0, x: isMobile ? 0 : -40, y: 18, scale: 0.97, filter: "blur(6px)" }}
                         whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)" }}
                         viewport={{ once: false, margin: "0px 0px -15% 0px" }}
                         transition={{ duration: 0.62, ease: [0.16, 1, 0.3, 1] }}
@@ -732,7 +737,7 @@ export default function TimelineV2() {
                   <div className="timeline-right-slot" style={{ display: "flex", justifyContent: "flex-start" }}>
                     {!isLeft && (
                       <motion.div
-                        initial={{ opacity: 0, x: 40, y: 18, scale: 0.97, filter: "blur(6px)" }}
+                        initial={{ opacity: 0, x: isMobile ? 0 : 40, y: 18, scale: 0.97, filter: "blur(6px)" }}
                         whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)" }}
                         viewport={{ once: false, margin: "0px 0px -15% 0px" }}
                         transition={{ duration: 0.62, ease: [0.16, 1, 0.3, 1] }}

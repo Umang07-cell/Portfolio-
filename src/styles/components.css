@@ -1847,46 +1847,10 @@
 /* --------------------------------------------------------------------------
    TIMELINE V2 MOBILE OVERRIDES
    -------------------------------------------------------------------------- */
-.timeline-mobile-line {
-  display: none;
-}
-
 @media (max-width: 900px) {
-  .timeline-road-svg, .timeline-car-wrapper {
-    display: none !important;
-  }
-
-  .timeline-mobile-line {
-    display: block;
-    position: absolute;
-    left: 20px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: var(--border-subtle);
-  }
-
+  /* Keep road + car — just shrink the center column so cards have room */
   .timeline-v2-milestone {
-    display: flex !important;
-    flex-direction: column !important;
-    padding-left: 50px;
-    position: relative;
-    gap: 0 !important;
-  }
-
-  .timeline-left-slot, .timeline-right-slot {
-    justify-content: flex-start !important;
-    width: 100%;
-  }
-
-  .timeline-marker-container {
-    position: absolute !important;
-    left: 21px !important;
-    transform: translateX(-50%) !important; /* Center on the straight line */
-    top: 24px; /* Align with the top of the card */
-  }
-
-  .timeline-marker-line {
-    display: none !important;
+    grid-template-columns: minmax(0, 1fr) 60px minmax(0, 1fr) !important;
+    gap: clamp(0.25rem, 1vw, 0.75rem) !important;
   }
 }
