@@ -80,7 +80,7 @@ DevOps: Python, Git, GitHub Actions, Docker, Railway, Render, AWS, Azure
 
 export const GROQ_CONFIG = {
   url: 'https://api.groq.com/openai/v1/chat/completions',
-  model: 'groq/compound-mini',
+  model: 'qwen/qwen3.8-27b',
   temperature: 0.3,
   maxTokens: 500
 };

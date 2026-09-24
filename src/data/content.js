@@ -6,7 +6,7 @@ export const profile = {
   name: "Umang Pawar",
   role: "GenAI Engineer",
   location: "Nagpur, India",
-  phone: "+91 8055070449",
+  phone: "+91 80550 70449",
   email: "umangpawar629@gmail.com",
   github: "https://github.com/Umang07-cell",
   githubLabel: "github.com/Umang07-cell",
