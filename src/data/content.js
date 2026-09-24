@@ -4,18 +4,18 @@
 
 export const profile = {
   name: "Umang Pawar",
-  role: "AI Engineer",
+  role: "GenAI Engineer",
   location: "Nagpur, India",
   phone: "+91 8055070449",
   email: "umangpawar629@gmail.com",
   github: "https://github.com/Umang07-cell",
   githubLabel: "github.com/Umang07-cell",
   linkedin: "https://www.linkedin.com/in/umang-pawar-208157314",
-  resumeUrl: "Umang_Pawar_AI_Engineer.pdf",
+  resumeUrl: "/Umang_Pawar_AI.pdf",
 };
 
 export const heroCopy = {
-  overline: "AI ENGINEER — NAGPUR, IN",
+  overline: "GENAI ENGINEER — NAGPUR, IN",
   positioning: "Two production AI systems live.\nBuilding what's next.",
   description:
     "I engineer AI applications that ship — RAG pipelines, LLM orchestration, and backend systems built for real users.",
@@ -131,13 +131,13 @@ export const otherProjects = [
     labelVariant: "accent",
     title: "Atlas-AI",
     subtitle: "AI Career Platform — 4 Integrated Systems",
-    stack: ["FastAPI", "React", "Groq", "LangChain", "HuggingFace", "RAG", "JSearch"],
+    stack: ["FastAPI", "React", "LoRA", "Groq (Llama 3 Vision)", "LangChain", "RAG", "JSearch"],
     detail:
-      "JSearch-powered daily job scraper, ATS resume scorer, LLM voice mock interview engine with dynamic follow-ups, and RAG career chatbot — unified into one deployed product.",
+      "JSearch-powered daily job scraper, ATS resume scorer, LLM voice mock interview engine with dynamic follow-ups, and RAG career chatbot — unified into one deployed product. Fine-tuned a Llama 3 model using LoRA and integrated a vision-language model for context-aware interview follow-ups.",
     features: [
       { icon: "🔎", title: "Daily Job Scraper", detail: "Live listings, refreshed daily" },
       { icon: "📝", title: "ATS Resume Scorer", detail: "Scored against target JDs" },
-      { icon: "🎙️", title: "Voice Mock Interviews", detail: "Dynamic follow-ups, 1–2s response time" },
+      { icon: "🎙️", title: "Voice Mock Interviews", detail: "LoRA + Vision, 1–2s latency" },
       { icon: "💬", title: "RAG Career Chatbot", detail: "Grounded career guidance" },
     ],
     links: { github: null, live: "https://atlas-frontend-uo1y.onrender.com/dashboard" }, // data-todo: Add Atlas-AI GitHub link if public
@@ -202,76 +202,58 @@ export const otherProjects = [
 
 export const techGroups = [
   {
-    label: "AI & Generative AI",
+    label: "AI, GenAI & LLMs",
     items: [
+      "Retrieval-Augmented Generation (RAG)",
+      "Agentic Workflows",
       "LangChain",
-      "RAG",
-      "Groq API",
-      "OpenAI API",
-      "ChromaDB",
-      "FAISS",
-      "HuggingFace Embeddings",
-      "LLM Orchestration",
-      "Multi-Agent Systems",
+      "Fine-tuning (LoRA)",
+      "Vision-Language Models",
+      "Groq & OpenAI APIs",
+      "Function/Tool Calling",
       "Prompt Engineering",
-      "Vector Databases",
-      "NLP/NLG",
-      "MLOps",
+      "Machine Learning",
+      "NLP",
     ],
   },
   {
-    label: "Backend & APIs",
+    label: "Backend & Databases",
     items: [
       "FastAPI",
       "Flask",
-      "Django",
       "Node.js",
-      "Express.js",
       "REST APIs",
       "PostgreSQL",
-      "MySQL",
+      "Qdrant",
+      "ChromaDB",
+      "FAISS",
+      "pgvector",
       "MongoDB",
-      "SQLite",
-      "SQLAlchemy",
+      "MySQL",
+      "Redis",
       "ABAC Security",
-      "Web Scraping",
     ],
   },
   {
-    label: "Frontend & Data",
+    label: "Frontend & Languages",
     items: [
+      "Python",
+      "JavaScript",
+      "TypeScript",
+      "SQL",
       "React.js",
       "Vite",
       "Tailwind CSS",
-      "TypeScript",
-      "JavaScript",
       "Framer Motion",
-      "Pandas",
-      "NumPy",
-      "Scikit-learn",
-      "ETL Pipelines",
-      "EDA",
-      "Statistical Analysis",
     ],
   },
   {
-    label: "Infrastructure & DevOps",
-    items: ["Python", "Git", "GitHub Actions", "Docker", "Railway", "Render", "AWS", "Azure"],
+    label: "Cloud & DevOps",
+    items: ["Git", "GitHub Actions (CI/CD)", "Docker", "AWS", "Azure", "Railway", "Render"],
   },
 ];
 
 export const experience = [
-  {
-    role: "Software Developer Intern",
-    company: "Suvidha Foundation",
-    date: "Sep 2025 – Nov 2025",
-    badge: null,
-    points: [
-      "Built NLP/NLG-powered web applications with text preprocessing and language generation pipelines",
-      "Work directly applicable to LLM output processing and later AI workflow development",
-    ],
-    stack: ["Python", "NLP", "NLG"],
-  },
   {
     role: "Software Developer Intern",
     company: "Syncsas Technologies",
@@ -303,9 +285,9 @@ export const experience = [
       "Architected HR-PolicyIQ, an ABAC-secured RAG chatbot using LangChain, Qdrant, and Groq; deployed to 100+ employees and later packaged for an external client",
       "Cut chatbot response latency from 5–6s to 1–1.5s through embedding caching and retrieval optimization; reduced hallucinations with confidence-scored reranking",
       "Designed and shipped the Lead Generation Engine pipeline for query/JD processing, pgvector candidate matching, scoring, and live B2B outreach",
-      "Owned the Policy module end to end: document upload, metadata, in-app viewing, versioning, and supersede workflows",
+      "Evaluated a local Llama 3 model (PyTorch) against Groq-hosted APIs, migrating to meet production latency and reliability requirements",
     ],
-    stack: ["FastAPI", "LangChain", "Groq", "Qdrant", "PostgreSQL", "Redis"],
+    stack: ["FastAPI", "LangChain", "Groq", "Qdrant", "PostgreSQL", "PyTorch"],
   },
 ];
 
@@ -321,10 +303,6 @@ export const journey = [
   {
     year: "2025",
     text: "Published ML research in IJRASET — first formal research credit, tied to TheReturnPath (an ML-integrated missing persons platform).",
-  },
-  {
-    year: "2025",
-    text: "Joined Suvidha Foundation as a Software Developer Intern, building NLP/NLG-powered web applications.",
   },
   {
     year: "2025",
@@ -348,7 +326,7 @@ export const journey = [
   },
   {
     year: "2026",
-    text: "Earned the Google AI Professional Certificate.",
+    text: "Earned the Google AI Professional Certificate and Google AI Essentials Certificate.",
   },
   {
     year: "2026",
