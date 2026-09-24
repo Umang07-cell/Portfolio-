@@ -3,21 +3,7 @@ import { motion, useScroll, useTransform, useSpring, useReducedMotion, useMotion
 import { journey } from "../data/content";
 import ScrollScaleTitle from "./ui/ScrollScaleTitle";
 
-const cinematicCardMilestones = [
-  { year: "2022", text: journey[0].text },
-  { year: "2022", text: journey[1].text },
-  { year: "2025", text: journey[2].text },
-  { year: "2025", text: journey[3].text },
-  { year: "2025", text: journey[4].text },
-  { year: "2025", text: journey[5].text },
-  { year: "2026", text: journey[6].text },
-  { year: "2026", text: journey[7].text },
-  { year: "2026", text: journey[8].text },
-  { year: "2026", text: journey[9].text },
-  { year: "2026", text: journey[10].text },
-  { year: "2026", text: journey[11].text },
-  { year: "2026", text: journey[12].text },
-];
+const cinematicCardMilestones = journey;
 
 // ---------------------------------------------------------------------------
 // CinematicCard — wraps a single timeline row.
@@ -268,21 +254,7 @@ function TimelineV2CinematicCards() {
 }
 
 
-const milestones = [
-  { year: "2022", text: journey[0].text },
-  { year: "2022", text: journey[1].text },
-  { year: "2025", text: journey[2].text },
-  { year: "2025", text: journey[3].text },
-  { year: "2025", text: journey[4].text },
-  { year: "2025", text: journey[5].text },
-  { year: "2026", text: journey[6].text },
-  { year: "2026", text: journey[7].text },
-  { year: "2026", text: journey[8].text },
-  { year: "2026", text: journey[9].text },
-  { year: "2026", text: journey[10].text },
-  { year: "2026", text: journey[11].text },
-  { year: "2026", text: journey[12].text },
-];
+const milestones = journey;
 
 const CURVED_ROUTE = "M80 0 L80 1000";
 
