@@ -4,29 +4,30 @@
 
 export const profile = {
   name: "Umang Pawar",
-  role: "GenAI Engineer",
+  role: "AI/GenAI Engineer",
   location: "Nagpur, India",
   phone: "+91 80550 70449",
   email: "umangpawar629@gmail.com",
   github: "https://github.com/Umang07-cell",
   githubLabel: "github.com/Umang07-cell",
   linkedin: "https://www.linkedin.com/in/umang-pawar-208157314",
-  resumeUrl: "/Umang_Pawar_AI.pdf",
+  portfolio: "umangpawar.vercel.app",
+  resumeUrl: "/Umang_Pawar_AI_Engineer.pdf",
 };
 
 export const heroCopy = {
-  overline: "GENAI ENGINEER — NAGPUR, IN",
-  positioning: "Two production AI systems live.\nBuilding what's next.",
+  overline: "AI/GENAI ENGINEER — LLMs, RAG & AGENTIC SYSTEMS",
+  positioning: "4 AI projects. 2 live deployments.\n45/50 on a hand-checked test set.",
   description:
-    "I engineer AI applications that ship — RAG pipelines, LLM orchestration, and backend systems built for real users.",
+    "Fresher AI Engineer who built and deployed RAG systems, guardrailed retrieval, and agentic LLM workflows. Skilled in Python, FastAPI, LangChain, and 3 vector stores.",
 };
 
 export const aboutCopy = {
   heading: "Building AI that works in the real world.",
   paragraphs: [
-    "I'm a CS graduate from Nagpur who builds production AI systems that actually get used — not just submitted. My work at LanceSoft went from engineering brief to company-wide adoption: an HR chatbot that 100+ employees rely on, and a lead generation engine running live B2B outreach.",
-    "I think in pipelines: document ingestion, chunking, embeddings, retrieval, grounding. I care about what happens when an LLM answer is wrong and how the system recovers. I'm a published ML researcher, a Google AI Professional Certificate holder, and someone who debugs production issues on Railway at odd hours because the system needs to work.",
-    "Most recently an AI Engineer Intern at LanceSoft. Targeting AI Engineer roles in Pune, Bangalore, or Hyderabad.",
+    "Fresher AI Engineer who built and deployed RAG systems, guardrailed retrieval, and agentic LLM workflows across 4 AI projects and 2 live deployments. Built an access-controlled HR RAG chatbot for 100+ employees at LanceSoft (45/50 on a hand-checked test set).",
+    "I think in pipelines: document ingestion, chunking, embeddings, retrieval, grounding. Skilled in Python, FastAPI, LangChain, and 3 vector stores (Qdrant, FAISS, pgvector). I care about what happens when an LLM answer is wrong and how the system recovers.",
+    "Google AI Professional Certificate holder and published ML researcher (IJRASET, 2025). Most recently an AI Engineer Intern at LanceSoft. Targeting AI Engineer roles in Pune, Bangalore, or Hyderabad.",
   ],
 };
 
@@ -42,16 +43,9 @@ export const finsight = {
   solution:
     "Upload any SEC 10-K filing or ask about any public company. FinSight retrieves, grounds, and answers — with citations.",
   stack: [
-    "FastAPI",
+    "Groq",
     "LangChain",
-    "ChromaDB",
     "FAISS",
-    "Groq API",
-    "HuggingFace",
-    "React",
-    "Vite",
-    "Tailwind",
-    "SQLite",
     "Railway",
   ],
   features: [
@@ -61,7 +55,7 @@ export const finsight = {
     { icon: "💬", title: "Chat Memory", detail: "Full conversation history" },
   ],
   engineeringNote:
-    "Resolved 6 production bugs including Pydantic v2 migration, deprecated Groq model string, Railway $PORT binding, and CORS header conflicts. Full MLOps ownership from commit to Railway deployment.",
+    "Tested on sample financial reports with 20+ edge-case questions, checking answers against the source; improved answer quality by fixing chunking and tuning the retrieval pipeline. Deployed on Railway; resolved Pydantic version conflicts and CORS issues.",
   stats: [
     { value: "< 2s", label: "LLM answers" },
     { value: "6", label: "Analysis modes" },
@@ -97,9 +91,9 @@ export const otherProjects = [
       { value: "100+", label: "Employees" },
       { value: "6+", label: "HR Modules" },
     ],
-    stack: ["FastAPI", "LangChain", "Qdrant", "Groq", "ABAC", "React"],
+    stack: ["FastAPI", "LangChain", "Qdrant", "Groq", "ABAC", "PostgreSQL", "Redis"],
     detail:
-      "ABAC-secured HR assistant built with RAG, LangChain, Qdrant, and Groq (Llama 3). Deployed to 100+ employees, then packaged into a client-facing knowledge-bot product with grounded answers and PII redaction.",
+      "ABAC-secured HR assistant built with RAG, LangChain, Qdrant, and Groq (Llama 3) over 30+ HR policy documents (~4,000 chunks). Deployed to 100+ employees. Evaluated 45/50 on a hand-checked test set with confidence-scored reranking and source-cited grounding guardrails.",
     features: [
       { icon: "🔒", title: "ABAC Access Control", detail: "Permission-gated by role" },
       { icon: "🕵️", title: "PII Redaction", detail: "Automatic on every answer" },
@@ -116,7 +110,7 @@ export const otherProjects = [
     subtitle: "AI-Powered B2B Outreach System",
     stack: ["Python", "FastAPI", "BeautifulSoup", "Selenium", "LLM Enrichment", "PostgreSQL"],
     detail:
-      "Production pipeline for query and JD processing, contact retrieval, pgvector-based candidate matching and scoring, and staged routing — now powering LanceSoft's live B2B outreach.",
+      "Production pipeline for query and JD processing, contact retrieval, pgvector-based candidate matching and scoring across 3,000+ candidate records, and staged routing — now powering LanceSoft's live B2B outreach.",
     features: [
       { icon: "🕸️", title: "Automated Scraping", detail: "BeautifulSoup + Selenium" },
       { icon: "🧠", title: "LLM Enrichment", detail: "Structured contact profiling" },
@@ -131,9 +125,9 @@ export const otherProjects = [
     labelVariant: "accent",
     title: "Atlas-AI",
     subtitle: "AI Career Platform — 4 Integrated Systems",
-    stack: ["FastAPI", "React", "LoRA", "Groq (Llama 3 Vision)", "LangChain", "RAG", "JSearch"],
+    stack: ["Python", "FastAPI", "Groq", "LangChain", "JSearch"],
     detail:
-      "JSearch-powered daily job scraper, ATS resume scorer, LLM voice mock interview engine with dynamic follow-ups, and RAG career chatbot — unified into one deployed product. Fine-tuned a Llama 3 model using LoRA and integrated a vision-language model for context-aware interview follow-ups.",
+      "Built 4 integrated AI systems in one deployed product: a JSearch job scraper (8-10 jobs per run), an ATS resume scorer, a voice mock-interview engine with LLM follow-ups, and a RAG career chatbot. Fine-tuned Llama 3 with LoRA, integrated a Groq-hosted vision-language model. Cut response latency from 4-5s to ~2s (~2x faster).",
     features: [
       { icon: "🔎", title: "Daily Job Scraper", detail: "Live listings, refreshed daily" },
       { icon: "📝", title: "ATS Resume Scorer", detail: "Scored against target JDs" },
@@ -202,54 +196,46 @@ export const otherProjects = [
 
 export const techGroups = [
   {
-    label: "AI, GenAI & LLMs",
+    label: "AI / GenAI",
     items: [
       "Retrieval-Augmented Generation (RAG)",
-      "Agentic Workflows",
       "LangChain",
-      "Fine-tuning (LoRA)",
-      "Vision-Language Models",
-      "Groq & OpenAI APIs",
-      "Function/Tool Calling",
+      "Agentic Workflows",
+      "LoRA Fine-tuning",
       "Prompt Engineering",
-      "Machine Learning",
-      "NLP",
+      "Reranking",
+      "Guardrails",
+      "LLM Evaluation",
+      "Function/Tool Calling",
+      "Vision-Language Models",
     ],
   },
   {
-    label: "Backend & Databases",
+    label: "LLMs / Vector DBs",
     items: [
-      "FastAPI",
-      "Flask",
-      "Node.js",
-      "REST APIs",
-      "PostgreSQL",
+      "Groq",
+      "OpenAI API",
+      "Llama 3",
       "Qdrant",
-      "ChromaDB",
       "FAISS",
       "pgvector",
-      "MongoDB",
-      "MySQL",
-      "Redis",
-      "ABAC Security",
     ],
   },
   {
-    label: "Frontend & Languages",
+    label: "Languages / Backend",
     items: [
       "Python",
-      "JavaScript",
-      "TypeScript",
       "SQL",
-      "React.js",
-      "Vite",
-      "Tailwind CSS",
-      "Framer Motion",
+      "FastAPI",
+      "Flask",
+      "REST APIs",
+      "SQLAlchemy",
+      "ABAC (Attribute-Based Access Control)",
     ],
   },
   {
-    label: "Cloud & DevOps",
-    items: ["Git", "GitHub Actions (CI/CD)", "Docker", "AWS", "Azure", "Railway", "Render"],
+    label: "Data / Infra",
+    items: ["PostgreSQL", "Redis", "Pandas", "Power BI", "Excel", "Git", "GitHub Actions (CI/CD)", "Docker", "Railway", "Render"],
   },
 ];
 
@@ -260,10 +246,10 @@ export const experience = [
     date: "Nov 2025 – Mar 2026",
     badge: null,
     points: [
-      "3 client-facing full-stack features, zero post-release defects",
-      "CI/CD via GitHub Actions: 60% reduction in manual deployment steps",
+      "Shipped 3 client-facing full-stack features (Python, Flask, PostgreSQL) across Agile sprints, including an AI chatbot (LangChain + OpenAI API), with testing",
+      "Set up GitHub Actions CI/CD pipelines, cutting manual deployment steps by 60%",
     ],
-    stack: ["Python", "Flask", "PostgreSQL", "GitHub Actions"],
+    stack: ["Python", "Flask", "PostgreSQL", "LangChain", "OpenAI API", "GitHub Actions"],
   },
   {
     role: "Data Analyst Intern",
@@ -271,10 +257,10 @@ export const experience = [
     date: "Mar 2026 – Jun 2026",
     badge: null,
     points: [
-      "ETL pipelines processing 637,494+ live client records",
-      "Enrollment Performance Dashboard: primary stakeholder tool for weekly decisions",
+      "Built automated Python/Pandas/SQL ETL pipelines processing 637,494+ client records across multiple source tables into ML-ready datasets",
+      "Built Power BI and Excel dashboards that refresh directly from the pipeline, giving stakeholders weekly KPI and segmentation reporting",
     ],
-    stack: ["Python", "Pandas", "SQL"],
+    stack: ["Python", "Pandas", "SQL", "Power BI", "Excel"],
   },
   {
     role: "AI Engineer Intern",
@@ -282,12 +268,14 @@ export const experience = [
     date: "Jul 2026 – Sep 2026",
     badge: "RECENT",
     points: [
-      "Architected HR-PolicyIQ, an ABAC-secured RAG chatbot using LangChain, Qdrant, and Groq; deployed to 100+ employees and later packaged for an external client",
-      "Cut chatbot response latency from 5–6s to 1–1.5s through embedding caching and retrieval optimization; reduced hallucinations with confidence-scored reranking",
-      "Designed and shipped the Lead Generation Engine pipeline for query/JD processing, pgvector candidate matching, scoring, and live B2B outreach",
-      "Evaluated a local Llama 3 model (PyTorch) against Groq-hosted APIs, migrating to meet production latency and reliability requirements",
+      "Built HR-PolicyIQ, a RAG chatbot (LangChain, Qdrant, Groq Llama 3, FastAPI, PostgreSQL, Redis) over 30+ HR policy documents (~4,000 chunks), deployed to 100+ employees",
+      "Evaluated on a 50-question test set, checking every answer against source documents: 45/50 correct with relevant citations; fixed the 5 partially accurate answers by revising the system prompt",
+      "Implemented ABAC retrieval for 3 roles (manager, HR, employee) across Hyderabad and Bangalore; ran 20+ edge-case unauthorized-access tests, identified content leaks, and fixed them",
+      "Added a confidence-scored reranker and source-cited answers as grounding guardrails against hallucination, plus request logging to monitor query and API-key failures",
+      "Benchmarked local Llama 3 (PyTorch) against Groq-hosted Llama 3 and migrated to Groq for production reliability; cut average response latency from 5-6s to 1-1.5s (~4x faster) via embedding caching and pipeline optimization",
+      "Built a lead-generation engine matching 3,000+ candidate records to job descriptions and resumes using pgvector and contact retrieval, surfacing qualified leads for managers and HR",
     ],
-    stack: ["FastAPI", "LangChain", "Groq", "Qdrant", "PostgreSQL", "PyTorch"],
+    stack: ["FastAPI", "LangChain", "Groq", "Qdrant", "PostgreSQL", "Redis", "pgvector"],
   },
 ];
 
@@ -322,11 +310,11 @@ export const journey = [
   },
   {
     year: "2026",
-    text: "Graduated B.Tech in Computer Science & Engineering from G.H. Raisoni University, Nagpur.",
+    text: "Graduated B.Tech in Computer Science & Engineering from G.H. Raisoni University, Nagpur (CGPA: 7.50/10).",
   },
   {
     year: "2026",
-    text: "Earned the Google AI Professional Certificate and Google AI Essentials Certificate.",
+    text: "Earned the Google AI Professional Certificate (2026).",
   },
   {
     year: "2026",
@@ -352,7 +340,7 @@ export const horizontalTimeline = [
     image: null,
     imageAlt: "FinSight dashboard showing financial analysis",
     badge: "LIVE",
-    tags: ["FastAPI", "LangChain", "ChromaDB", "Groq", "React"],
+    tags: ["Groq", "LangChain", "FAISS", "Railway"],
     link: "https://finsight-17ni.onrender.com/#/chat",
     linkText: "Live Demo",
   },
@@ -364,7 +352,7 @@ export const horizontalTimeline = [
     description: "End-to-end RAG pipeline with document versioning, PII redaction, and attribute-based access control. 100+ daily users at LanceSoft.",
     image: null,
     badge: "INTERNAL",
-    tags: ["FastAPI", "LangChain", "ChromaDB", "Groq", "ABAC"],
+    tags: ["FastAPI", "LangChain", "Qdrant", "Groq", "ABAC"],
     link: null,
   },
   {
@@ -386,7 +374,7 @@ export const horizontalTimeline = [
     description: "Job scraper + ATS resume scorer + voice mock interview engine + RAG career chatbot unified into one product.",
     image: null,
     badge: "DEPLOYED",
-    tags: ["FastAPI", "React", "Groq", "LangChain", "RAG"],
+    tags: ["Python", "FastAPI", "Groq", "LangChain", "JSearch"],
     link: "https://atlas-frontend-uo1y.onrender.com/dashboard",
     linkText: "Live Demo",
   },
